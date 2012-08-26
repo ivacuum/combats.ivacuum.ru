@@ -1,0 +1,72 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="i/main.css">
+<meta content="text/html; charset=windows-1251" http-equiv="Content-type">
+<script src="i/commoninf.js"></script>
+<script>
+function sol(n)
+{
+	window.open('ch.php?online=1&n='+n,'onlines','width=400,height=500,location=no,scrollbars=yes,resizable=yes');
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="e2e0e0">
+<form action="{S_ROOMS_ACTION}" method="get">
+<input type="hidden" name="setch" value="1">
+<table width="100%">
+	<tr>
+		<td align="center"><script>drwfl("{LOGIN}",{ID},{LEVEL},{ALIGN},"{KLAN}")</script><br>
+		<font color="red"></font>
+		</td>
+		<td align="right"><input type="submit" value="Обновить">
+		<input type="button" name="combats" value="Поединки" onclick="location.href='{U_COMBATS}';" style="font-weight:bold;">
+		<input type="button" value="Вернуться" onclick="location='{U_RETURN}';"></td>
+	</tr>
+</table>
+
+<table cellspacing="3" cellpadding="3" width="100%">
+	<tr>
+		<td align="center" colspan="3"><h3>Карта миров</td><td align="right"><small>(сейчас в клубе {OVERALL} чел.)</td>
+	</tr>
+	<tr>
+		<td align="right" colspan="4"><input type="submit" name="level100" value="Выйти на Центральную площадь"></td>
+	</tr>
+</table>
+
+<table cellspacing="3" cellpadding="3" width="100%">
+	<tr>
+	<script>
+	var rooms = new Array("Комната для новичков","Комната для новичков 2","Комната для новичков 3","Комната для новичков 4",
+	"Зал Воинов","Зал Воинов 2","Зал Воинов 3","Торговый Зал",
+	"Рыцарский зал","Башня рыцарей-магов","Колдовской мир","Этажи духов",
+	"Астральные этажи","Огненный мир","Зал Паладинов","Совет Белого Братства",
+	"Зал Тьмы","Царство Тьмы", "Зал Стихий" ,"Будуар. <small>Вход мужчинам строго воспрещен</small>", "Комната Знахаря<BR><small>Вход из Торгового Зала</small>",
+	//"Комната Слов<BR><small>Вход платный: 1кр.</small>",
+	"");
+	var levels = new Array("0","0","0","0", "1-3","1-3","1-3","4-21", "4-6","7-9","10-12","13-15", "16-18","19-21","","", "","","","1-21","4-21","","");
+	var colors = new Array("99CC99","99CC99","99CC99","99CC99", "99CC00","99CC00","99CC00","e2e0e0", "CC99FF","00CCFF","CCFFFF","FF0000",
+	"FF9900","FFFF00","F3F3F3","FFFFFF", "C0C0C0","909090","c8c8c8","faf2f2","A08080"//,"A0A080"
+	);
+
+	var snum= new Array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,19,52); //,55);
+	var count = new Array("{ROOM1}","{ROOM2}","{ROOM3}","{ROOM4}", "{ROOM5}","{ROOM6}","{ROOM7}","{ROOM8}", "{ROOM9}","{ROOM10}","{ROOM11}","{ROOM12}", "{ROOM13}","{ROOM14}","{ROOM15}","{ROOM16}", "{ROOM17}","{ROOM18}","{ROOM20}","{ROOM19}","{ROOM52}"); //,"0");
+	var mylevel = {ROOM};
+
+	for( i = 0; i < rooms.length; i++ )
+	{
+		var s = '<td></td>';
+
+		if( rooms[i].length > 0 )
+		{
+			s = '<td align="center" bgcolor="'+colors[i]+'" width="25%">'+rooms[i]+' '+(levels[i].length>0?'<small>(level '+levels[i]+')</small>':'')+'<br><input type="submit" name="level'+(snum[i])+'" value="Войти">';
+			if( snum[i] == mylevel ) s += '<img src="i/flag.gif" width="20" height="20" alt="">';
+			s += ' &nbsp; <b>('+count[i]+')</b><img src="i/inf.gif" width="12" height="11" alt="Кто в чате?" onclick="sol('+(snum[i])+');" style="cursor:hand"></td>';
+		}
+
+		document.write(s);
+		if( (i+1) % 4 == 0 ) document.write('</tr><tr>')
+	}
+	</script>
+	</tr>
+</table>
+</form>

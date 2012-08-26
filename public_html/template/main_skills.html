@@ -1,0 +1,271 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<script language="JavaScript" src="http://static.ivacuum.ru/i/commoninf.js"></script>
+<style>
+.tz {
+	font-weight:bold;
+	color: #003388;
+	background-color: #CCCCCC;
+	cursor:hand;
+	text-align: center;
+}
+.tzS {
+	font-weight:bold;
+	color: #000000;
+	background-color: #CCCCCC;
+	text-align: center;
+}
+.tzOver {
+	font-weight:bold;
+	color: #003388;
+	background-color: #C0C0C0;
+	cursor:hand;
+	text-align: center;
+}
+.tzSet {
+	font-weight:bold;
+	color: #003388;
+	background-color: #A6B1C6;
+	cursor:default;
+	text-align: center;
+}
+.dtz {
+	display: none;
+}
+</style>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="e2e0e0">
+<div id="mmoves" style="background-color:#FFFFCC; visibility:hidden; overflow:visible; position:absolute; border-color:#666666; border-style:solid; border-width: 1px; padding: 2px; white-space: nowrap;"></div>
+<script>
+var clevel='';
+var currentID=1078509722;
+
+function dw(s)
+{
+	document.write(s);
+}
+
+function highl(nm, i)
+{
+	if( clevel == nm )
+	{
+		document.all(nm).className = 'tzSet';
+	}
+	else
+	{
+		if( i == 1 )
+		{
+			document.all(nm).className = 'tzOver';
+		}
+		else
+		{
+			document.all(nm).className = 'tz';
+		}
+	}
+}
+function setlevel(nm)
+{
+	if( clevel != '' )
+	{
+		document.all(clevel).className = 'tz';
+		document.all('d'+clevel).style.display = 'none';
+	}
+	clevel = nm || 'L1';
+	document.all(clevel).className = 'tzSet';
+	document.all('d'+clevel).style.display = 'inline';
+}
+</script>
+
+<table width="100%">
+	<tr>
+		<td>
+		{MESSAGE}
+		&nbsp; &nbsp;{DRWFL}</td>
+		<td valign="top" align="right"><input type="button" value="Вернуться" onclick="top.returned()"></td>
+	</tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td width="30%" valign="top">
+			<table border="0" cellspacing="1" cellpadding="0" width="100%">
+				<tr>
+					<td class="tzS">Характеристики персонажа</td>
+						<tr>
+							<td style="padding-left: 5">
+							<!-- BEGIN stats -->
+							&bull; {stats.NAME}: {stats.VALUE}{stats.BUTTON}<br>
+							<!-- END stats -->
+							<br>
+							{FREE_UPR}
+							{FREE_SKILLS}
+							{FREE_SPC}
+						</tr>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td width="1" bgcolor="#A0A0A0"></td>
+		<td valign="top">
+			<table border="0" cellspacing="1" cellpadding="0" width="100%">
+				<tr>
+					<td class="tz" id="L1" width="150" onmouseover="highl('L1',1)" onmouseout="highl('L1',0)" onclick="setlevel('L1')">Холодное Оружие</td>
+					<td></td>
+					<!-- BEGIN high_level -->
+					<td class="tz" id="L2" width="150" onmouseover="highl('L2',1)" onmouseout="highl('L2',0)" onclick="setlevel('L2')">Магия</td>
+					<td></td>
+					<td class="tz" id="L3" width="150" onmouseover="highl('L3',1)" onmouseout="highl('L3',0)" onclick="setlevel('L3')">Особенности</td>
+					<td></td>
+					<td class="tz" id="L4" width="150" onmouseover="highl('L4',1)" onmouseout="highl('L4',0)" onclick="setlevel('L4')">Приемы</td>
+					<td></td>
+					<!-- END high_level -->
+					<td class="tz" id="L5" width="150" onmouseover="highl('L5',1)" onmouseout="highl('L5',0)" onclick="setlevel('L5')">Состояние</td>
+					<td class="tz">&nbsp;</td>
+				</tr>
+			</table>
+			<table border="0" cellspacing="1" cellpadding="0" width="100%">
+				<tr>
+					<td width="100%" style="padding-left: 7px">
+					<div class="dtz" id="dL1">
+					<!-- BEGIN weapon_mastery -->
+					&nbsp;&bull; Мастерство владения {weapon_mastery.NAME}: {weapon_mastery.VALUE}{weapon_mastery.BUTTON}<br>
+					<!-- END weapon_mastery -->
+					</div>
+					<!-- BEGIN high_level -->
+					<div class="dtz" id="dL2">
+					<!-- END high_level -->
+					<!-- BEGIN magic_mastery -->
+					&nbsp;&bull; Мастерство владения {magic_mastery.NAME}: {magic_mastery.VALUE}{magic_mastery.BUTTON}<br>
+					<!-- END magic_mastery -->
+					<!-- BEGIN high_level -->
+					</div>
+					<div class="dtz" id="dL3">
+					<br />
+					{SPC_DECREASE_TRANSFERS_PRICE}
+					{SPC_DECREASE_INJURY}
+					{SPC_HOMEWORLD_TIME}
+					{SPC_INCREASE_EXPERIENCE}
+					{SPC_INCREASE_FRIENDS}
+					{SPC_INCREASE_HOBBY}
+					{SPC_MAX_MASS}
+					{SPC_TRANSFERS}
+					{SPC_HPSPEED}
+					{SPC_MANASPEED}
+					{SELECTED_SPECIALS}
+					</div>
+					<div class="dtz" id="dL4">
+					<b>Выбранные приемы:</b>
+					<table width="195" cellpadding="0" cellspacing="0">
+						<tr></tr>
+						<tr>
+							<td colspan="5" height="3"><span></span></td>
+						</tr>
+						<tr>
+							<td>{SPECIAL_SELECTED_1}</td>
+							<td>{SPECIAL_SELECTED_2}</td>
+							<td>{SPECIAL_SELECTED_3}</td>
+							<td>{SPECIAL_SELECTED_4}</td>
+							<td>{SPECIAL_SELECTED_5}</td>
+						</tr>
+						<tr>
+							<td colspan="5" height="3"><span></span></td>
+						</tr>
+						<tr>
+							<td>{SPECIAL_SELECTED_6}</td>
+							<td>{SPECIAL_SELECTED_7}</td>
+							<td>{SPECIAL_SELECTED_8}</td>
+							<td>{SPECIAL_SELECTED_9}</td>
+							<td>{SPECIAL_SELECTED_10}</td>
+						</tr>
+					</table>
+					<br />
+					<b>Доступные приемы:</b>
+					<table width="390" cellpadding="0" cellspacing="0">
+						<tr></tr>
+						<tr>
+							<td colspan="5" height="3"><span></span></td>
+						</tr>
+						<tr>
+							<td>{HIT_STRONG}</td>
+							<td>{KRIT_WILDLUCK}</td>
+							<td>{COUNTER_WINDDANCE}</td>
+							<td>{BLOCK_ACTIVESHIELD}</td>
+							<td>{PARRY_PREDICTION}</td>
+							<td>{HIT_LUCK}</td>
+							<td>{KRIT_BLINDLUCK}</td>
+							<td>{COUNTER_BLADEDANCE}</td>
+							<td>{BLOCK_FULLSHIELD}</td>
+							<td>{PARRY_SECONDLIFE}</td>
+						</tr>
+						<tr>
+							<td colspan="5" height="3"><span></span></td>
+						</tr>
+						<tr>
+							<td>{HIT_RESOLVE}</td>
+							<td>{BLOCK_ADDCHANGE}</td>
+							<td>{MULTI_BLOCKCHANGES}</td>
+							<td>{MULTI_RESOLVETACTIC}</td>
+							<td>{MULTI_SPEEDUP}</td>
+							<td>{MULTI_FOLLOWME}</td>
+							<td>{HIT_OVERHIT}</td>
+							<td>{MULTI_DOOM}</td>
+							<td>{HIT_WILLPOWER}</td>
+							<td>{MULTI_AGRESSIVESHIELD}</td>
+						</tr>
+						<tr>
+							<td colspan="5" height="3"><span></span></td>
+						</tr>
+						<tr>
+							<td>{MULTI_SKIPARMOR}</td>
+							<td>{BLOCK_ABSOLUTE}</td>
+							<td>{MULTI_HIDDENDODGE}</td>
+							<td>{MULTI_HIDDENPOWER}</td>
+							<td>{KRIT_CRUSH}</td>
+							<td>{MULTI_COWARDSHIFT}</td>
+							<td>{HIT_NATISK}</td>
+							<td>{BLOCK_CIRCLESHIELD}</td>
+						</tr>
+					</table>
+					<br><br><br><br>
+					</div>
+					<!-- END high_level -->
+					<div class="dtz" id="dL5">
+					<br />
+					<!-- BEGIN status_table -->
+					<table cellpadding="0" cellspacing="0">
+						<tr bgcolor="#A5A5A5">
+							<td style="padding: 1px, 5px, 1px, 5px"><b>Характеристика</b></td>
+							<td bgcolor="#E0E0E0" width="1" rowspan="1000"></td>
+							<td style="padding: 1px, 5px, 1px, 5px" align="right"><b>Мф.</b></td>
+							<td bgcolor="#E0E0E0" width="1" rowspan="1000"></td>
+							<td style="padding: 1px, 5px, 1px, 5px" align="right"><b>Время</b></td>
+							<td bgcolor="#E0E0E0" width="1" rowspan="1000"></td>
+							<td style="padding: 1px, 5px, 1px, 5px" align="right"><b>Комментарий</b></td>
+						</tr>
+						<!-- END status_table -->
+						<!-- BEGIN status -->
+						<tr bgcolor="{status.ROW_CLASS}">
+							<td style="padding-right: 5px">&nbsp;&bull; {status.NAME}</td>
+							<td style="padding: 1px, 5px, 1px, 5px" align="right">{status.MF}</td>
+							<td style="padding: 1px, 5px, 1px, 5px" align="right">{status.TIME}</td>
+							<td style="padding: 1px, 5px, 1px, 5px" align="right">{status.COMMENT}</td>
+						</tr>
+						<!-- END status -->
+						<!-- BEGIN status_table -->
+					</table>
+					<!-- END status_table -->
+					{BONUSES}
+					</div>
+					<script>setlevel('L{CURRENT_OTDEL}');</script>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+
+</body>
+</html>

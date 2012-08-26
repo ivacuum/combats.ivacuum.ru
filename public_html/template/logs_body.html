@@ -1,0 +1,97 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+</head>
+<body leftmargin="5" topmargin="5" marginwidth="5" marginheight="5" bgcolor="e2e0e0">
+<script src="http://static.ivacuum.ru/i/commoninf.js"></script>
+<script>
+function dv()
+{
+	//document.write('<table cellspacing="1" width="100%"><td height="1" bgcolor="#b0b0b0"></table>');
+	document.write('<hr />');
+}
+
+function fastshow (content) {
+	var el = document.getElementById("mmoves");
+	var o = window.event.srcElement;
+	if (content!='' && el.style.visibility != "visible") {el.innerHTML = '<small>'+content+'</small>';}
+	var x = window.event.clientX + document.documentElement.scrollLeft + document.body.scrollLeft + 3;
+	var y = window.event.clientY + document.documentElement.scrollTop + document.body.scrollTop+5;
+	el.style.left = x + "px";
+	el.style.top  = y + "px";
+	if (el.style.visibility != "visible") {
+		el.style.visibility = "visible";
+	}
+}
+
+function hideshow () {
+	document.getElementById("mmoves").style.visibility = 'hidden';
+}
+
+var Blocks=new Array("","Голова", "Грудь", "Живот", "Пояс", "Ноги");
+function adh(a,d) {
+	var s, s1;
+
+	s1="";
+	if (a > 0) { s1="Атака: "+Blocks[a]+"<BR>"};
+	var dd=""+d;
+	dd=dd.split('');
+	s="";
+
+	for (i=0; i<dd.length; i++) {
+		if (s) {
+			if (i == dd.length - 1) {s+=" и "} else {s+=", "};
+		}
+		s+=Blocks[parseInt(dd[i])];
+	}
+	s=s1 + "Защита: " + s;
+	document.write("<SPAN style='' onmouseover='fastshow(\""+s+"\"); this.style.textDecoration=\"underline\"' onmouseout='hideshow(); this.style.textDecoration=\"\"'>");
+}
+</script>
+<div id="mmoves" style="background-color: #FFFFCC; visibility: hidden; overflow: visible; position: absolute; border-color: #666666; border-style: solid; border-width: 1px; padding: 2px; white-space: nowrap;"></div>
+<h3><img align="absmiddle" src="http://static.ivacuum.ru/i/fighttype{BATTLE_TYPE}.gif" width="20" height="20" alt="{BATTLE_TYPE_DESC}"> Бойцовский Клуб <img align="absmiddle" src="http://static.ivacuum.ru/i/fighttype{BATTLE_TYPE}.gif" width="20" height="20" alt="{BATTLE_TYPE_DESC}"></h3>
+{PAGINATION}<br /><br />
+<!-- BEGIN fight -->
+<form method="post" action="/logs.pl">
+<input name="log" type="hidden" value="{LOG_ID}">
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr valign="top">
+		<td valign="bottom"><input name="refresh" type="submit" value="Обновить"></td>
+		<td align="right" style="padding-right: 20px" valign="top"><!--Комментарий к бою: <br>Основное место боя: <br>--></td>
+	</tr>
+</form>
+</table>
+<!-- END fight -->
+<!-- BEGIN fight_end -->
+<form method="get" action="/logs.pl">
+<input name="log" type="hidden" value="{LOG_ID}">
+<table width="100%" cellpadding="0" cellspacing="0">
+	<tr valign="top">
+		<td valign="bottom"><input type="submit" name="analiz2" value="Статистика"></td>
+		<td align="right" style="padding-right: 20px" valign="top"><!--Комментарий к бою: костыли и только<br>Основное место боя: Торговый Зал<br>--></td>
+	</tr>
+</form>
+</table>
+<!-- END fight_end -->
+<hr>
+{LOG_TEXT}
+<hr>
+{CHARS}
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<!-- BEGIN fight -->
+		<td><form method="post" action="logs.php">
+		<input name="log" type="hidden" value="{LOG_ID}"><input name="refresh" type="submit" value="Обновить">
+		<!-- END fight -->
+		<!-- BEGIN fight_end -->
+		<td><form method="get" action="logs.php">
+		<input name="log" type="hidden" value="{LOG_ID}"><input type="submit" name="analiz2" value="Статистика">
+		<!-- END fight_end -->
+		</form><a name="end"></a></td>
+	</tr>
+</table>
+</form>
+{PAGINATION}
+</body>
+</html>

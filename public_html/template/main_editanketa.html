@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+</head>
+<body leftmargin="10" topmargin="0" marginwidth="0" bgcolor="e2e0e0">
+<table width="100%" cellspacing="0" cellpadding="0">
+<form method="post" action="main.php?editanketa=1" name="form1" id="form1">
+	<tr>
+		<td><h3>Анкета персонажа "{LOGIN}"</td>
+		<td align="right" valign="top"><input type="button" name="return" onclick="location.href='/main.pl?edit=';" value="Вернуться"></td>
+	</tr>
+</table>
+{MESSAGE}
+<table width="95%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#B2B2B2" name="F1">
+	<tr bgcolor="#D3D2D0">
+		<td>Ваше реальное имя:</td>
+		<td><input name="name" value="{NAME}" class="inup" size="45" maxlength="90"></td>
+	</tr>
+	<tr bgcolor="#D3D2D0">
+		<td>Город: </td>
+		<td><input type="text" value="{CITY}" name="city" size="45" maxlength="40" class="inup"></td>
+	</tr>
+	<tr bgcolor="#D3D2D0">
+		<td>ICQ:</td>
+		<td><input value="" name="icq" class="inup" size="9" maxlength="20"><!-- <INPUT type=checkbox name='hide_icq' value=1> не отображать в инф. о персонаже.--></td>
+	</tr>
+	<tr bgcolor="#D3D2D0">
+		<td>Домашняя страница:</td>
+		<td><input value="{HOMEPAGE}" name="homepage" class="inup" size="45" maxlength="60"></td>
+	</tr>
+	<tr bgcolor="#D3D2D0">
+		<td>Девиз:</td>
+		<td><input value="{MOTTO}" name="motto" class="inup" size="60" maxlength="160"></td>
+	</tr>
+	<tr bgcolor="#D3D2D0">
+		<td colspan="2" align="left">Увлечения / хобби <small>(не более 60 слов)</small><br>
+		<textarea name="hobby" cols="60" rows="7" class="inup" style="width:95%">{HOBBY}</textarea></td>
+	</tr>
+	<tr bgcolor="#D3D2D0">
+		<td>Цвет сообщений в чате:</td>
+		<td><select name="ChatColor" class="inup">
+		<option style="background: #f2f0f0; color: black" value="Black" selected="selected">Black</option>
+		<option style="background: #f2f0f0; color: blue" value="Blue">Blue</option>
+		<option style="background: #f2f0f0; color: fuchsia" value="Fuchsia">Fuchsia</option>
+		<option style="background: #f2f0f0; color: gray" value="Gray">Grey</option>
+		<option style="background: #f2f0f0; color: green" value="Green">Green</option>
+		<option style="background: #f2f0f0; color: maroon" value="Maroon">Maroon</option>
+		<option style="background: #f2f0f0; color: navy" value="Navy">Navy</option>
+		<option style="background: #f2f0f0; color: olive" value="Olive">Olive</option>
+		<option style="background: #f2f0f0; color: purple" value="Purple">Purple</option>
+		<option style="background: #f2f0f0; color: teal" value="Teal">Teal</option>
+		<option style="background: #f2f0f0; color: orange" value="Orange">Orange</option>
+		<option style="background: #f2f0f0; color: chocolate" value="Chocolate">Chocolate</option>
+		<option style="background: #f2f0f0; color: darkkhaki" value="DarkKhaki">DarkKhaki</option>
+		<option style="background: #f2f0f0; color: sandybrown" value="SandyBrown">SandyBrown</option>
+		</select>
+		<script language="javascript" type="text/javascript">form1.ChatColor.value="{CHAT_COLOUR}";</script></td>
+    </tr>
+	<tr bgcolor="#D3D2D0">
+		<td colspan="3" align="center"><p align="center"><input name="saveanketa" type="submit" class="btn" value="Сохранить изменения"></p>
+	</tr>
+</form>
+</table>
+</body>
+</html>

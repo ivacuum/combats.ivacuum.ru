@@ -1,0 +1,295 @@
+<html>
+<head>
+<title>Информация о {LOGIN}</title>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<link href="http://static.ivacuum.ru/i/move/design3.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" language="javascript" src='http://static.ivacuum.ru/i/commoninf.js'></script>
+<script language="javascript" type="text/javascript">
+var CtrlPress = false;
+function info(login)
+{
+    login = login.replace('%', '%25');
+	while (login.indexOf('+')>=0) login = login.replace('+', '%2B');
+    while (login.indexOf('#')>=0) login = login.replace('#', '%23');
+	while (login.indexOf('?')>=0) login = login.replace('?', '%3F');
+	if (CtrlPress) { window.open('zayavka.php?logs=1&date=&filter='+login, '_blank'); }
+	else { window.open('inf.php?login='+login, '_blank'); }
+}
+document.onmousedown = Down;
+function Down() {CtrlPress = window.event.ctrlKey}
+
+function NewErrorTrap() { return true; }
+function errtrap()
+{
+	var OldErrorTrap = window.onerror;
+	window.onerror = NewErrorTrap;
+	if (window.opener) { // && window.opener.top.delay) {
+		document.write('<img src="http://static.ivacuum.ru/i/lock3.gif" WIDTH=20 HEIGHT=15 ALT="Приватное сообщение" onclick="window.opener.top.AddToPrivate(\'{LOGIN}\', true);" style="cursor: pointer;">');
+	}
+	if (document.log != null) { window.top.location="http://combats.ivacuum.ru/"; }
+	window.onerror = OldErrorTrap;
+}
+
+function fastshow2 (content)
+{
+	var el = document.getElementById("mmoves");
+	var o = window.event.srcElement;
+	if( content != '' && el.style.visibility != "visible" ) { el.innerHTML = '<small>'+content+'</small>'; }
+	var x = window.event.clientX + document.documentElement.scrollLeft + document.body.scrollLeft - el.offsetWidth + 5;
+	var y = window.event.clientY + document.documentElement.scrollTop + document.body.scrollTop+20;
+	el.style.left = x + "px";
+	el.style.top  = y + "px";
+	if( el.style.visibility != "visible" ) { el.style.visibility = "visible"; }
+}
+
+function hideshow () {
+	document.getElementById("mmoves").style.visibility = 'hidden';
+}
+
+var rnd = Math.random();
+//-- Смена хитпоинтов
+var delay = 18;		// Каждые 18сек. увеличение HP на 1%
+var redHP = 0.33;	// меньше 30% красный цвет
+var yellowHP = 0.66;// меньше 60% желтый цвет, иначе зеленый
+var TimerOn = -1;	// id таймера
+var tkHP, maxHP;
+var speed=100;
+var mspeed=100;
+
+function setHP(value, max, newspeed) {
+	tkHP=value; maxHP=max;
+	if (TimerOn>=0) { clearTimeout(TimerOn); TimerOn=-1; }
+	speed = newspeed / 10;
+	setHPlocal();
+}
+function setHPlocal() {
+	if (tkHP>maxHP) { tkHP=maxHP; }
+	var le=Math.round(tkHP)+"/"+maxHP;
+	le=240 - (le.length + 2)*7;
+	var sz1 = Math.round(((le-1)/maxHP)*tkHP);
+	var sz2 = le - sz1;
+	if (document.all("HP")) {
+		document.HP1.width=sz1;
+		document.HP2.width=sz2;
+		if (tkHP/maxHP < redHP) { document.HP1.src='http://static.ivacuum.ru/i/misc/bk_life_red.gif'; }
+		else {
+			if (tkHP/maxHP < yellowHP) { document.HP1.src='http://static.ivacuum.ru/i/misc/bk_life_yellow.gif'; }
+			else { document.HP1.src='http://static.ivacuum.ru/i/misc/bk_life_green.gif'; }
+		}
+		var s = document.all("HP").innerHTML;
+		document.all("HP").innerHTML = Math.round(tkHP)+"/"+maxHP;
+	}
+	tkHP = (tkHP+(maxHP/100)*speed/1000);
+	if (tkHP<maxHP) { TimerOn=setTimeout('setHPlocal()', delay*10); }
+	else { TimerOn=-1; }
+}
+</script>
+</head>
+<body style="margin: 10px; margin-top: 5px;" bgcolor="e2e0e0">
+<div id="mmoves" style="background-color: #FFFFCC; visibility: hidden; overflow: visible; position: absolute; border-color: #666666; border-style: solid; border-width: 1px; padding: 2px; white-space: nowrap; text-align: left; font-size: 11px;"></div>
+<table width="100%" border="0" cellpadding="1" cellspacing="2">
+	<tr valign="top">
+		<td align="center"><script>errtrap();</script>{DRWFL}</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr valign="top">
+		<td>
+			<table border="0" cellspacing="0" cellpadding="1">
+				<tr>
+					<td align="left" valign="top">
+						<table width="100%"  border="0" cellspacing="0" cellpadding="0" class="posit">
+							<!-- BEGIN blocked -->
+							<tr>
+								<td align="center" style="color: #FF0000; font-weight: bold;">Персонаж заблокирован!</td>
+							</tr>
+							<!-- END blocked -->
+							<tr>
+								<td nowrap style="font-size:10px"><span id="HP"></span>&nbsp;<img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP1" width="1" height="8" id="HP1"><img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP2" width="1" height="8" id="HP2"><span style="width:1px; height:10px"></span><img src="http://static.ivacuum.ru/i/herz.gif" width="10" height="9" alt="Уровень жизни"></td>
+							</tr>
+							<script>top.setHP({CURRENT_HP},{MAX_HP},{HPSPEED});</script>
+							<!-- BEGIN scrolls -->
+							<tr>
+								<td>
+									<table cellspacing="0" cellpadding="0">
+										<tr>
+											<td>{I_SCROLL1}</td>
+											<td>{I_SCROLL2}</td>
+											<td>{I_SCROLL3}</td>
+											<td>{I_SCROLL4}</td>
+											<td>{I_SCROLL5}</td>
+											<td><img src="http://static.ivacuum.ru/i/items/w109.gif" width="40" height="25" alt="Пустой слот"></td>
+										</tr>
+									</table>
+									<table cellspacing="0" cellpadding="0">
+										<tr>
+											<td>{I_SCROLL6}</td>
+											<td>{I_SCROLL7}</td>
+											<td>{I_SCROLL8}</td>
+											<td>{I_SCROLL9}</td>
+											<td>{I_SCROLL10}</td>
+											<td><img src="http://static.ivacuum.ru/i/items/w109.gif" width="40" height="25" alt="Пустой слот"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<!-- END scrolls -->
+							<tr>
+								<td>
+									<table  border="0" cellspacing="0" cellpadding="0">
+										<tr valign="top">
+											<td>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td>{HELMET}</td>
+													</tr>
+													<tr>
+														<td>{WEAPON}</td>
+													</tr>
+													<tr>
+														<td>{ARMOR}</td>
+													</tr>
+													<tr>
+														<td>{BELT}</td>
+													</tr>
+												</table>
+											</td>
+											<td>
+												<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td align="center" valign="top"><a href="./../bk/index.php?page=obraz&gender={GENDER_NUM}&obraz={OBRAZ}" target="_blank"><img src="http://static.ivacuum.ru/i/chars/{GENDER_NUM}/{OBRAZ}.gif" alt="{LOGIN} (Посмотреть образ)" width="120" height="220" border="0"></a></td>
+													</tr>
+													<tr>
+														<td>
+															<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td>{R_KARMAN}</td>
+																	<td><img src="http://static.ivacuum.ru/i/items/w15.gif" width="40" height="20" alt="" onmousemove="fastshow('Пустой слот карман');" onmouseout="hideshow();" /></td>
+																	<td>{L_KARMAN}</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td>
+												<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td>{CLIP}</td>
+													</tr>
+													<tr>
+														<td>{AMULET}</td>
+													</tr>
+													<tr>
+														<td>{NARUCHI}</td>
+													</tr>
+													<tr>
+														<td>{GLOVES}</td>
+													</tr>
+													<tr>
+														<td>
+															<table  border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td>{RING1}</td>
+																	<td>{RING2}</td>
+																	<td>{RING3}</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td>{SHIELD}</td>
+													</tr>
+													<tr>
+														<td>{BOOTS}</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" valign="top" style="font-weight:bold">{TOWN}</td>
+				</tr>
+				<tr>
+					<td><small>{ONLINE}{ROOM}</small></td>
+				</tr>
+				<!-- BEGIN in_fight -->
+				<tr>
+					<td><small>Персонаж сейчас в <a href="logs.php?log={BATTLE_ID}" target="_blank">поединке</a></small></td>
+				</tr>
+				<!-- END in_fight -->
+				<tr>
+					<td align="left" valign="top"><small>{SILENCE}
+<!--					<img src="http://static.ivacuum.ru/i/travma2.gif" width="24" height="15"> У персонажа легкая травма - ослаблены характеристики еще 8 ч.  9 мин.<br>            
+					<img src="http://static.ivacuum.ru/i/travma2.gif" width="24" height="15"> Персонаж ослаблен из-за смерти в бою, еще  9 мин.<BR></small></td>-->
+				</tr>
+			</table>
+		</td>
+		<td width="100%" valign="top" align="left" style="background-image:url(http://static.ivacuum.ru/i/zodiac/{ZODIAC}.gif); background-position:right top; background-repeat:no-repeat; padding-left: 10px;">
+			<table cellpadding="0" cellspacing="0" width="100%">
+				<tr>
+					<td valign="top">
+					{STRENGTH}
+					{AGILITY}
+					{PERCEPTION}
+					{VITALITY}
+					{INTELLECT}
+					{WISDOM}
+					{SPIRITUALITY}
+					{FREEDOM}
+					{FREEDOM_OF_SPIRIT}
+					{HOLINESS}
+					<hr align="left" width="300" size="1">
+					Уровень: {LEVEL}<br />
+					Побед: {WINS}<br />
+					Поражений: {LOSSES}<br />
+					Ничьих: {DRAWS}<br />
+					{ZVANIE}
+					Место рождения: <strong>{BIRTHDAY_TOWN}</strong><br />
+					День рождения персонажа: {BIRTHDAY}
+					<hr align="left" width="300" size="1">
+					{VIP}
+					{MAGIC_ABILITIES}
+					<!-- BEGIN paladins_message -->
+					Сообщение от паладинов:<br /><font class="private">{paladins_message.MESSAGE}</font><br /><hr>
+					<!-- END paladins_message -->
+					<!-- BEGIN paladins_log -->
+					Информация для паладинов:<br><span style="font-size: 11px">
+					{paladins_log.TEXT}
+					<!-- END paladins_log -->
+					<!-- BEGIN admin_log -->
+					<!--<br />
+					<table cellspacing="1" cellpadding="2" width="100%">
+						<tr>
+							<td><b style="font-size: 11px">Информация для администраторов:</b></td>
+						</tr>
+						{admin_log.TEXT}
+					</table>-->
+					<!-- END admin_log -->
+					<!-- BEGIN flowers -->
+					Подарены букеты цветов:<br>
+					<img src="http://static.ivacuum.ru/i/items/{flowers.IMG}.gif" width="60" height="60" alt="{flowers.DESC} ({flowers.FROM})">
+					<!-- END flowers -->
+					</td>
+					<!--<td align="right" valign="top" style="padding-top: 125">{FLAG}<br /><a href="./../" target="_blank"><small>paladins.combats.ru</small></a></td>-->
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr align="left" valign="top">
+		<td colspan="2"><hr align="left" size="1"><h3>Анкетные данные</h3>
+		Имя: {NAME}<br>
+		Пол: {GENDER}<br>
+		{HOMEPAGE}
+		{MOTTO}
+		{HOBBY}<br><br>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

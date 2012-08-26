@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link href="http://static.ivacuum.ru/i/move/design2.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+function solo(n)
+{
+	window.location.href = '/main.pl?path='+n;
+}
+
+function showtable(tblname)
+{
+	hidesel(tblname);
+	hidemenu(0);
+	document.getElementById('menu'+tblname).style.visibility = 'visible';
+	document.getElementById('menu'+tblname).style.width = '';
+	document.getElementById('menu'+tblname).style.overflow = 'visible';
+}
+
+function hidesel(tblname)
+{
+	for( var i = 1; i <= 5; i++ )
+	{
+		if( i != tblname )
+		{
+			document.getElementById('el'+i).style.backgroundColor='';
+			document.getElementById('el'+i).style.color='';
+		}
+	}
+}
+
+function hidemenu(time)
+{
+	for( var i = 1; i <= 4; i++ )
+	{
+		document.getElementById('menu'+i).style.visibility = 'hidden';
+		document.getElementById('menu'+i).style.width = '1px';
+		document.getElementById('menu'+i).style.overflow = 'hidden';
+	}
+}
+
+function jumptopath(path, topframe)
+{
+	if( !topframe )
+	{
+		top.frames['main'].location.href = '' + path;
+	}
+	else
+	{
+		top.location.href = '' + path;
+	}
+}
+
+function loadpers()
+{
+	document.getElementById('el4').style.backgroundColor = '#404040';
+	document.getElementById('el4').style.color = '#FFFFFF';
+	showtable('4');
+}
+
+</script>
+</head>
+<body onload="loadpers();">
+<table width="100%"  border="0" cellspacing="0" cellpadding="0" style="height:100%">
+	<tr>
+		<td align="left" valign="top" style="height: 73px;">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="background-image: url('http://static.ivacuum.ru/i/move/{I_FOLDER}_top_03.gif');"><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_01.gif" width="{HEADER_WIDTH}" height="32" /></td>
+					<td width="100%" align="right" valign="top" style="background-image:url('http://static.ivacuum.ru/i/move/{I_FOLDER}_top_03.gif');">
+						<table height="18" cellspacing="0" cellpadding="0" width="450" border="0">
+              <tbody>
+                <tr>
+                  <td width="31" valign="top"><img height="18" src="http://static.ivacuum.ru/i/move/mennu112_043.gif" width="38" /></td>
+                  <td valign="top"><table height="14" cellspacing="0" cellpadding="0" width="100%" background="http://static.ivacuum.ru/i/move/mennu112_06.gif" border="0">
+                      <tbody>
+                        <tr align="middle">
+                          <td id="el1" class="main_text" onclick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('1');">Знания</td>
+                          <td width="1"><img height="11" src="http://static.ivacuum.ru/i/move/mennu112_09.gif" width="1" /></td>
+                          <td id="el2" class="main_text" onclick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('2');">Общение</td>
+                          <td width="1"><img height="11" src="http://static.ivacuum.ru/i/move/mennu112_09.gif" width="1" /></td>
+                          <td id="el3" class="main_text" onclick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('3');">Безопасность</td>
+                          <td width="1"><img height="11" src="http://static.ivacuum.ru/i/move/mennu112_09.gif" width="1" /></td>
+                          <td id="el4" class="main_text" onclick="this.style.backgroundColor='#404040'; this.style.color='#FFFFFF'; showtable('4');">Персонаж</td>
+                          <td width="1"><img height="11" src="http://static.ivacuum.ru/i/move/mennu112_09.gif" width="1" /></td>
+                          <td id="el5" class="main_text" onclick="if (confirm('Выйти из игры?')) top.window.location='/enter.pl?mode=logout';">Выход&nbsp;</td>
+                        </tr>
+                      </tbody>
+                  </table></td>
+                  <td width="31" valign="top"><img height="18" src="http://static.ivacuum.ru/i/move/mennu112_023.gif" width="31" /></td>
+                </tr>
+              </tbody>
+            </table></td>
+        </tr>
+        <tr>
+          <td class="menutop"><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_05.gif" width="15" height="13" /><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_06.gif" width="79" height="13" /></td>
+          <td width="100%" align="right" nowrap="nowrap" class="menutop"><span id="menu1" style="visibility: hidden; width: 0px; overflow: hidden">| <a class="menutop" href="/encicl/" target="_blank">Энциклопедия</a></span> <span id="menu2" style="visibility: hidden; width: 0px; overflow: hidden">| <a class="menutop" href="http://ivacuum.ru/" target="_blank">Сайт</a></span> <span id="menu3" style="visibility: hidden; width: 0px; overflow: hidden">| <a class="menutop" href="#" onclick="this.blur(); jumptopath('/main.pl?changepsw=1'); return false;">Смена пароля</a></span> <span id="menu4" style="visibility: hidden; width: 0px; overflow: hidden">| <a class="menutop" href="#" onclick="this.blur(); jumptopath('/main.pl?edit='); return false;">Инвентарь</a> | <a class="menutop" href="#" onclick="this.blur(); jumptopath('/main.pl?skills=1'); return false;">Умения</a> | <a class="menutop" href="#" onclick="this.blur(); jumptopath('/main.pl?schet=1'); return false;">Отчет о переводах</a> | <a class="menutop" href="#" onclick="this.blur(); jumptopath('/zayavka.pl'); return false;">Поединки</a> | <a class="menutop" href="#" onclick="this.blur(); jumptopath('/main.pl?editanketa=1'); return false;">Анкета</a></span>&nbsp;</td>
+        </tr>
+        <tr style="background-image:url(http://static.ivacuum.ru/i/move/{I_FOLDER}_top_14.gif) ">
+          <td><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_09.gif" width="15" height="17" /><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_10.gif" width="79" height="17" /><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_11.gif" width="{TOWN_NAME_WIDTH}" height="17" /></td>
+          <td width="100%" align="right"><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_16.gif" width="24" height="17" /></td>
+        </tr>
+        <tr>
+          <td style="background-image:url(http://static.ivacuum.ru/i/move/{I_FOLDER}_top_20.gif) "><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_17.gif" width="15" height="11" /><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_18.gif" width="79" height="11" /></td>
+          <td width="100%" align="right" style="background-image:url(http://static.ivacuum.ru/i/move/{I_FOLDER}_top_20.gif) "><img src="http://static.ivacuum.ru/i/move/{I_FOLDER}_top_23.gif" width="24" height="11" /></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body>
+</html>

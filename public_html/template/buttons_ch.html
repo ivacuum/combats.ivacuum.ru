@@ -1,0 +1,133 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.menu {
+  background-color: #d2d0d0;
+  border-color: #ffffff #626060 #626060 #ffffff;
+  border-style: solid;
+  border-width: 1px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  visibility: hidden;
+}
+
+a.menuItem {
+  border: 0px solid #000000;
+  color: #003388;
+  display: block;
+  font-family: MS Sans Serif, Arial, Tahoma,sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+  padding: 2px 12px 2px 8px;
+  text-decoration: none;
+}
+
+a.menuItem:hover {
+  background-color: #a2a2a2;
+  color: #0066FF;
+}
+
+a,span {
+  FONT-SIZE: 10pt;
+  FONT-FAMILY: Verdana, Arial, Helvetica, Tahoma, sans-serif;
+  text-decoration: none;
+  FONT-WEIGHT: bold;
+  color: #003388;
+  cursor: hand;
+}
+body, td, ol, ul, li , p {
+  FONT-SIZE: 10pt;
+  FONT-FAMILY: Verdana, Arial, Helvetica, Tahoma, sans-serif;
+}
+a:hover		{ color: #0066FF}
+.number		{ font-size: 11pt; font-weight: bold; color: #6F0000}
+.p			{ font-weight:bold; color: red; background-color: #FAE0E0}
+.date		{ font-family: Courier; font-size: 8pt; text-decoration:none; font-weight:normal; color: #007000}
+.date2		{ font-family: Courier; font-size: 8pt; text-decoration:none; font-weight:normal; color: #007000; background-color: #00FFAA}
+.sysdate	{ font-family: Courier; font-size: 8pt; text-decoration:none; font-weight:normal; color: #B00000}
+</style>
+<script language="JavaScript" SRC="http://static.ivacuum.ru/i/ch2.81.js"></script>
+<script language="JavaScript">
+var maxsmiles = 3;
+var smilesimgpath='<img src=http://static.ivacuum.ru/i/smile/';
+var smilesimgstyle=' style="cursor:hand" onclick="sml(\'';
+var user = '{LOGIN}';
+
+function sml(smile){
+top.frames['bottom'].document.forms[0].text.value += ' :'+smile+': ';
+}
+function am(text){
+    var s="";
+    var spl=text.split("<br>");
+    for (var k=0; k<spl.length; k++){
+      var txt=spl[k];
+	  if (txt.length>0) {
+		var i,j=0;
+		for (i=0; i < sm.length; i+=3) {
+			while(txt.indexOf(':'+sm[i]+':') >= 0) {
+				txt = txt.replace(':'+sm[i]+':', smilesimgpath + sm[i] + '.gif ' + 'width='+sm[i+1]+' height='+sm[i+2]+smilesimgstyle+sm[i]+'\')">');
+				if (++j >= maxsmiles) break;
+			}
+			if (j>=maxsmiles) break;
+		}
+		if ((j=txt.indexOf('private ['))>0 && (i=txt.indexOf(']', j+9))>0 && txt.indexOf('</font> [<span>'+user+'</span>] ')>0) {
+			var user2 = txt.substring(j+9, i);
+			txt = txt.replace('private ['+user2+']', '<span class=p alt="'+user2+'">private ['+user2+']</span>');
+			var user3='';
+			if ((j=txt.indexOf('[<span>'))>0) {
+				i=txt.indexOf('</', j+7);
+				user3 = txt.substring(j+7, i);
+			}
+			if (user!=user3) {snotify(1,'nocheck');}
+		} else if (txt.indexOf('private ['+user+']')>0) {
+			if ((j=txt.indexOf('[<span>'))>0) {
+				i=txt.indexOf('</', j+7);
+				var user2 = txt.substring(j+7, i);
+				txt = txt.replace('private ['+user+']', '<span class=p alt="'+user2+'">private ['+user+']</SPAN>');
+				if (user!=user2) {snotify(1,'nocheck');}
+			} else { 
+				txt = txt.replace('private ['+user+']', '<b>private ['+user+']</b>');
+				snotify(1,'nocheck');
+			}
+			txt = txt.replace('<font class=date>', '<font class=date2>');
+		} else if (txt.indexOf('to ['+user+']')>0) {
+			var user2='';
+			if ((j=txt.indexOf('[<span>'))>0) {
+				i=txt.indexOf('</', j+7);
+				user2 = txt.substring(j+7, i);
+			}
+			txt = txt.replace('to ['+user+']', '<b>to ['+user+']</b>');
+			txt = txt.replace('<font class=date>', '<font class=date2>');
+			if ((user2 && user!=user2) || user2=='') {snotify(1,'check');}
+		} else {
+			var user2;
+			if ((j=txt.indexOf('[<SPAN>'))>0) {
+				i=txt.indexOf('</', j+7);
+				user2 = txt.substring(j+7, i);
+			}
+			if ((user2 && user!=user2) || user2=='') {snotify(1,'check');}
+		}
+		s+=txt+"<BR>";
+	  }
+    }
+    mes.innerHTML += s;
+	window.scrollBy(0, 65000);
+}
+
+function snotify (sid, chk) {
+	if ((top.ChatOm==true && top.SoundSys==true) || (top.ChatOm==false && chk=='nocheck' && top.SoundSys==true)) {
+		var volume=top.frames['bottom'].soundvol;
+		top.frames['bottom'].window.document.Sound.SetVariable("Volume", (volume*50));
+		top.frames['bottom'].window.document.Sound.SetVariable("Sndplay",sid);
+	}	
+}
+</script>
+</head>
+<body topmargin="0" marginheight="0" bgcolor="f2f0f0" onload="top.strt()">
+<textarea id="holdtext" STYLE="display:none;"></textarea>
+<div id="oMenu" class="menu" onmouseout="closeMenu()"></div>
+<div id="mes" onclick="AddLogin()" oncontextmenu="OpenMenu()"></div>
+</body>
+</html>

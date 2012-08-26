@@ -1,0 +1,46 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/move/design3.css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<script language="JavaScript" src="http://static.ivacuum.ru/i/sl2.21.js"></script>
+</head>
+<body bgcolor="e2e0e0">
+<script src="http://static.ivacuum.ru/i/commoninf.js"></script>
+<div id="hint4" class="ahint"></div>
+<div style="float: left">&nbsp; &nbsp; &nbsp;{DRWFL}</div><p align="right"><input class="btn" type="button" value="Вернуться" onclick="top.returned()"></p>
+{MESSAGE}
+<h4>Наложить заклятие</h4>
+<table>
+	<tr>
+		<td>Заклятие молчания:</td>
+		<td><img src="http://static.ivacuum.ru/i/items/silence15.gif" width="40" height="25" alt="Наложить заклятие молчания" onclick="findlogin('Заклятие молчания', 'paladins.pl', 'silence15', '')" style="cursor: hand">&nbsp;<img src="http://static.ivacuum.ru/i/items/silence30.gif" width="40" height="25" alt="Наложить заклятие молчания" onclick="findlogin('Заклятие молчания', 'paladins.pl', 'silence30', '')" style="cursor: hand">{SILENCE60}{SILENCE180}{SILENCE360}{SILENCE720}{SILENCE1440}</td>
+	</tr>
+	<tr>
+		<td>Снять заклятие молчания:</td>
+		<td><img src="http://static.ivacuum.ru/i/items/sleep_off.gif" width="40" height="25" alt="Снять заклятие молчания" onclick="findlogin('Снять заклятие молчания', 'paladins.php', 'sleep_off', '')" style="cursor:hand"></td>
+	</tr>
+</table>
+<form action="/paladins.pl" method="post">
+<fieldset style="width: 810px"><legend><h4>Хаос</h4></legend>
+Логин: <input name="chaos_login" style="width: 100px" type="text">&nbsp; &nbsp;Причина: <input name="chaos_reason" style="width: 308px" type="text">&nbsp; &nbsp;Время: <select name="chaos_time" style="width: 125px"><option value="1440">одни сутки</option><option value="2880">два дня</option><option value="4320">три дня</option><option value="10080">неделя</option><option value="44640">месяц</option><option value="262080">полгода</option><option value="525600">год</option></select> <input name="submit" type="submit" value="Вперед"></fieldset>
+<br /><br />
+<fieldset style="width: 810px"><legend><h4>Заклятие смерти</h4></legend>
+Логин: <input name="death_login" style="width: 150px" type="text">&nbsp; &nbsp;Причина: <input name="death_reason" style="width: 450px" type="text"> <input name="submit" type="submit" value="Вперед"></fieldset>
+</form>
+<!-- BEGIN align1_99 -->
+<table>
+	<tr>
+		<td><h4>Повышение паладинов</h4>
+		Склонность: <img alt="Паладин поднебесья" height="15" onclick="findlogin('Паладин поднебесья', 'paladins.php', 'make_align1', '')" src="http://static.ivacuum.ru/i/align1.gif" style="cursor: hand" width="12">&nbsp;<img alt="Таможенный паладин" height="15" onclick="findlogin('Таможенный паладин', 'paladins.php', 'make_align1_4', '')" src="http://static.ivacuum.ru/i/align1.4.gif" style="cursor: hand" width="12">&nbsp;<img alt="Паладин солнечной улыбки" height="15" onclick="findlogin('Паладин солнечной улыбки', 'paladins.php', 'make_align1_5', '')" src="http://static.ivacuum.ru/i/align1.5.gif" style="cursor: hand" width="12">&nbsp;<img alt="Инквизитор" height="15" onclick="findlogin('Инквизитор', 'paladins.php', 'make_align1_6', '')" src="http://static.ivacuum.ru/i/align1.6.gif" style="cursor: hand" width="12">&nbsp;<img alt="Паладин огненной зари" height="15" onclick="findlogin('Паладин огненной зари', 'paladins.php', 'make_align1_7', '')" src="http://static.ivacuum.ru/i/align1.7.gif" style="cursor: hand" width="12">&nbsp;<img alt="Хранитель знаний" height="15" onclick="findlogin('Хранитель знаний', 'paladins.php', 'make_align1_75', '')" src="http://static.ivacuum.ru/i/align1.75.gif" style="cursor: hand" width="12">&nbsp;<img alt="Паладин неба" height="15" onclick="findlogin('Паладин неба', 'paladins.php', 'make_align1_9', '')" src="http://static.ivacuum.ru/i/align1.9.gif" style="cursor: hand" width="12">&nbsp;<img alt="Старший паладин неба" height="15" onclick="findlogin('Старший паладин неба', 'paladins.php', 'make_align1_91', '')" src="http://static.ivacuum.ru/i/align1.91.gif" style="cursor: hand" width="12">&nbsp;<img alt="Кавалер" height="15" onclick="findlogin('Кавалер', 'paladins.php', 'make_align1_92', '')" src="http://static.ivacuum.ru/i/align1.92.gif" style="cursor: hand" width="12">&nbsp;<img alt="Верховный паладин" height="15" onclick="findlogin('Верховный паладин', 'paladins.php', 'make_align1_99', '')" src="http://static.ivacuum.ru/i/align1.99.gif" style="cursor: hand" width="12"></td>
+		<td width="50"></td>
+		<td><h4>Повышение тарманов</h4>
+		Склонность: <img alt="Тарман-служитель" height="15" onclick="findlogin('Тарман-служитель', 'paladins.php', 'make_align3_01', '')" src="http://static.ivacuum.ru/i/align3.01.gif" style="cursor: hand" width="12">&nbsp;<img alt="Тарман-надсмотрщик" height="15" onclick="findlogin('Тарман-надсмотрщик', 'paladins.php', 'make_align3_05', '')" src="http://static.ivacuum.ru/i/align3.05.gif" style="cursor: hand" width="12">&nbsp;<img alt="Каратель" height="15" onclick="findlogin('Каратель', 'paladins.php', 'make_align3_06', '')" src="http://static.ivacuum.ru/i/align3.06.gif" style="cursor: hand" width="12">&nbsp;<img alt="Тарман-убийца" height="15" onclick="findlogin('Тарман-убийца', 'paladins.php', 'make_align3_07', '')" src="http://static.ivacuum.ru/i/align3.07.gif" style="cursor: hand" width="12">&nbsp;<img alt="Тарман-палач" height="15" onclick="findlogin('Тарман-палач', 'paladins.php', 'make_align3_09', '')" src="http://static.ivacuum.ru/i/align3.09.gif" style="cursor: hand" width="12">&nbsp;<img alt="Тарман-владыка" height="15" onclick="findlogin('Тарман-владыка', 'paladins.php', 'make_align3_091', '')" src="http://static.ivacuum.ru/i/align3.091.gif" style="cursor: hand" width="12">&nbsp;<img alt="Верховный тарман" height="15" onclick="findlogin('Верховный тарман', 'paladins.php', 'make_align3_99', '')" src="http://static.ivacuum.ru/i/align3.99.gif" style="cursor: hand" width="12"></td>
+		<td width="50"></td>
+		<td><h4>Прочие склонности:</h4>
+		Склонность: <img alt="Без склонности" height="13" onclick="findlogin('Снять склонность', 'paladins.php', 'make_align0', '')" src="http://static.ivacuum.ru/i/clear.gif" style="cursor: hand" width="13">&nbsp;<img alt="Истинный хаос" height="15" onclick="findlogin('Истинный хаос', 'paladins.php', 'make_align2_5', '')" src="http://static.ivacuum.ru/i/align2.5.gif" style="cursor: hand" width="12">&nbsp;<img alt="Темный" height="15" onclick="findlogin('Темный', 'paladins.php', 'make_align3', '')" src="http://static.ivacuum.ru/i/align3.gif" style="cursor: hand" width="12">&nbsp;<img alt="Нейтрал" height="15" onclick="findlogin('Нейтрал', 'paladins.php', 'make_align7', '')" src="http://static.ivacuum.ru/i/align7.gif" style="cursor: hand" width="12">&nbsp;<img alt="Алхимик" height="15" onclick="findlogin('Алхимик', 'paladins.php', 'make_align50', '')" src="http://static.ivacuum.ru/i/align50.gif" style="cursor: hand" width="12"></td>
+	</tr>
+</table>
+<!-- END align1_99 -->
+</body>
+</html>

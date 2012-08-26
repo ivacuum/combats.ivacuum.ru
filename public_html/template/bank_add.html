@@ -1,0 +1,162 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/move/design3.css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<script language="JavaScript1.2" SRC="http://static.ivacuum.ru/i/misc/keypad.js"></script>
+<style type="text/css">
+<!--
+.btkey {
+	display: block; text-align: center;
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px;
+	FONT-SIZE: 6.5pt; FONT-FAMILY: verdana,sans-serif,arial;
+	width: 18;
+	CURSOR: hand;
+	border: 1px solid #D6D3CE;
+	COLOR: #000000; BACKGROUND-COLOR: #ffffff;
+}
+-->
+</style>
+</head>
+<body bgcolor="e2e0e0">
+<table width="100%">
+	<tr>
+		<td><h3>Банк</td>
+		<td align="right" width="30%">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr align="right" valign="top">
+					<td></td>
+					<td>
+						<table width="80" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="0" valign="bottom" align="left"><a href="bank.php"><img src="http://static.ivacuum.ru/i/move/rel_1.gif" width="15" height="16" alt="Обновить" border="0"></a></td>
+								<td>
+									<table width="80"  border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td colspan="3" align="center"><img src="http://static.ivacuum.ru/i/move/navigatin_462.gif" width="80" height="4"></td>
+										</tr>
+										<tr>
+											<td colspan="3" align="center">
+												<table width="80" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td><img src="http://static.ivacuum.ru/i/move/navigatin_481.gif" width="9" height="8"></td>
+														<td width="100%" bgcolor="#000000">
+															<table border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td nowrap="nowrap" align="center"><div align="center" style="font-size: 4px; padding: 0px; border: solid black 0px; text-align: center" id="prcont"></div>
+																	<script language="javascript" type="text/javascript">
+																	var s="";for (i=1; i<=32; i++) {s+='<span id="progress'+i+'">&nbsp;</span>';if (i<32) {s+='&nbsp;'};}document.getElementById('prcont').innerHTML=s;
+																	</script>
+																	</td>
+																</tr>
+															</table>
+														</td>
+														<td><img src="http://static.ivacuum.ru/i/move/navigatin_50.gif" width="7" height="8"></td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3"><img src="http://static.ivacuum.ru/i/move/navigatin_tt1_532.gif" width="80" height="5"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td nowrap="nowrap" id="moveto">
+									<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
+										<!-- BEGIN links -->
+										<tr>
+											<td bgcolor="#D3D3D3"><img src="http://static.ivacuum.ru/i/move/links.gif" width="9" height="7"></td>
+											<td bgcolor="#D3D3D3" nowrap><a href="{links.U_PATH}" onclick="return check_access();" class="menutop" title="{links.DESC}">{links.NAME}</a></td>
+										</tr>
+										<!-- END links -->
+									</table>
+								</td>
+							</tr>
+						</table>
+						<!-- <br /><span class="menutop"><nobr>Банк</nobr></span>-->
+					</td>
+				</tr>
+			</table>
+			<div id="mmoves" style="background-color: #FFFFCC; visibility: hidden; overflow: visible; position: absolute; border-color: #666666; border-style: solid; border-width: 1px; padding: 2px; white-space: nowrap;"></div>
+			<script language="javascript" type="text/javascript">
+			var progressEnd = 32;		// set to number of progress <span>'s.
+			var progressColor = '#00CC00';	// set to progress bar color
+			var mtime = parseInt('{GOING_TIME}');
+			if (!mtime || mtime<=0) {mtime=0;}
+			var progressInterval = Math.round(mtime*1000/progressEnd);	// set to time between updates (milli-seconds)
+			var is_accessible = true;
+			var progressAt = progressEnd;
+			var progressTimer;
+			function progress_clear() {
+				for (var i = 1; i <= progressEnd; i++) document.getElementById('progress'+i).style.backgroundColor = 'transparent';
+				progressAt = 0;
+	
+				is_accessible = false;
+				document.getElementById('moveto').disabled = true;
+			}
+			function progress_update() {
+				progressAt++;
+				//if (progressAt > progressEnd) progress_clear();
+				if (progressAt > progressEnd) {
+
+					is_accessible = true;
+					document.getElementById('moveto').disabled = false;
+				} else {document.getElementById('progress'+progressAt).style.backgroundColor = progressColor;
+					progressTimer = setTimeout('progress_update()',progressInterval);
+				}
+			}
+			function progress_stop() {
+				clearTimeout(progressTimer);
+				progress_clear();
+			}
+			function check(it) {
+				if (document.getElementById(it).disabled == true) {return false} else {return true;}
+			}
+			function check_access () {
+				return is_accessible;
+			}
+			if (mtime>0) {
+				progress_clear();
+				progress_update();
+			} else {
+				for (var i = 1; i <= progressEnd; i++) {
+					document.getElementById('progress'+i).style.backgroundColor = progressColor;
+				}
+			}
+			</script>
+		</td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+	<form action="/bank.pl" name="F2" method="post">
+		<td><fieldset><legend><b>Открыть счет</b></legend>
+			<table>
+				<tr>
+					<td valign="top">
+						<table>
+							<tr>
+								<td width="80">Пароль</td>
+								<td><input style="width: 90px" type="password" name="psw" maxlength="30"></td>
+							</tr>
+							<tr>
+								<td>Пароль (повторно)</td>
+								<td><input style="width: 90px" type="password" name="psw_repeat" maxlength="30"></td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center"><input type="submit" value="Открыть счет" name="add"></td>
+							</tr>
+						</table>
+					</td>
+					<td><div id="keypad2" align="center" style="display: none;"></div></td>
+				</tr>
+			</table>
+		</fieldset>
+		</td>
+	</tr>
+</table>

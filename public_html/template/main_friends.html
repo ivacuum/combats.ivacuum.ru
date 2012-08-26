@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<script language="JavaScript" SRC="http://static.ivacuum.ru/i/sl2.21.js"></script>
+<script src='i/commoninf.js'></script>
+<script>
+var nlevel=0;
+function w(login,id,align,klan,level,online)
+{
+	var s = "";
+
+	if( online != '' )
+	{
+		s += '<a href="javascript:top.AddToPrivate(\''+login+'\',true)"><img src="http://static.ivacuum.ru/i/lock.gif" width="20" height="15" alt="Приватно"></a>'
+		s += ' <img src="http://static.ivacuum.ru/i/align'+align+'.gif" width="12" height="15">';
+
+		if( klan != '' )
+		{
+			s += '<a href="encicl/klan/'+klan+'.html" target="_blank"><img src="http://static.ivacuum.ru/i/klan/'+klan+'.gif" width="24" height="15" alt=""></a>'}
+			s += '<a href="javascript:top.AddTo(\''+login+'\')">'+login+'</a>['+level+']<a href="inf.php?id='+id+'" target="_blank"><img src="http://static.ivacuum.ru/i/inf.gif" width="12" height="11" alt="Информация о персонаже"></a>';
+			s += ' - '+online;
+	}
+	else
+	{
+		s += '<img src="http://static.ivacuum.ru/i/offline.gif" width="20" height="15" border="0" alt="Нет в клубе">';
+
+		if( align == '')
+		{
+			align = '0';
+		}
+
+		s += ' <img src="http://static.ivacuum.ru/i/align'+align+'.gif" width="12" height="15">';
+
+		if( klan != '' )
+		{
+			s += '<a href="encicl/klan/'+klan+'.html" target="_blank"><img src="http://static.ivacuum.ru/i/klan/'+klan+'.gif" width="24" height="15" alt=""></a>';
+		}
+
+		if( level )
+		{
+			if( nlevel == 0 )
+			{
+				nlevel = 1;
+				s = "<br>"+s;
+			}
+
+			s += '<font color="gray"><b>'+login+'</b>['+level+']<a href="inf.php?id='+id+'" target="_blank"><img src="http://static.ivacuum.ru/i/inf.gif" width="12" height="11" alt="Информация о персонаже"></a> - Нет в клубе';
+		}
+		else
+		{
+			if( nlevel == 1 )
+			{
+				nlevel = 2;
+				s="<br>"+s;
+			}
+
+			s+='<font color="gray"><i>'+login+'</i> - нет в этом городе';
+		}
+
+		s+='</font>';
+	}
+
+	document.write(s+'<br>');
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="e2e0e0">
+<div id="hint4" class="ahint"></div>
+{MESSAGE}
+<table cellspacing="0" cellpadding="2" width="100%">
+	<tr>
+		<td width="75%">
+			<table cellspacing="0" cellpadding="2" width="100%">
+				<tr>
+					<td align="center"><h4>Друзья</h4></td>
+				</tr>
+				<tr>
+					<td bgcolor="efeded" nowrap><script>{FRIENDS}</script>
+					<input type="button" style="width: 100px" value="Добавить" onclick="findlogin('Добавить в список', 'main.pl', 'friendadd', '', 0)">&nbsp;&nbsp;&nbsp;<input type="button" style="width: 100px" value="Удалить" onclick="findlogin('Удалить из списка', 'main.pl', 'friendremove', '', 0)"></td>
+				</tr>
+			</table>
+		</td>
+		<td width="25%" align="right" valign="top"><input type="button" value="Обновить" style="width: 75px" onclick='location="/main.pl?friends=1"'> &nbsp;<input type="button" value="Вернуться" style="width: 75px" onclick="top.returned()"></td>
+	</tr>
+</table>
+</body>
+</html>

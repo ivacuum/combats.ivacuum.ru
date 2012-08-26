@@ -1,0 +1,23 @@
+<HTML><HEAD><meta content="text/html; charset=utf-8" http-equiv=Content-type>
+<TITLE>Смайлики</TITLE>
+<SCRIPT>
+function S(name)
+{
+	var sData = dialogArguments;
+    sData.F1.text.focus();
+	sData.F1.text.value = sData.F1.text.value + ':'+name+': ';
+}
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="http://static.ivacuum.ru/i/ch2.81.js"></SCRIPT>
+</HEAD><BODY leftmargin=2 topmargin=2 marginheight=2 style="cursor:hand" bgcolor=f2f0f0><CENTER>
+<SCRIPT>
+var i=0;
+while(i<sm.length) {
+	var s = sm[i++];
+	document.write('<IMG SRC=http://static.ivacuum.ru/i/smile/'+s+'.gif WIDTH='+sm[i++]+' HEIGHT='+sm[i++]+' BORDER=0 ALT="" onclick="S(\''+s+'\')"> ');
+}
+</SCRIPT>
+
+<BR><INPUT TYPE="button" value=" Закрыть " onclick="window.close()" style="border: solid 1pt #B0B0B0; font-family: MS Sans Serif; font-size: 10px; color: #191970; MARGIN-BOTTOM: 2px; MARGIN-TOP: 1px;">
+</CENTER></BODY>
+</HTML>

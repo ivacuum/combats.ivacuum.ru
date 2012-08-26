@@ -1,0 +1,144 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="i/main.css">
+<link rel="stylesheet" type="text/css" href="i/move/design3.css">
+<meta content="text/html; charset=windows-1251" http-equiv="Content-type">
+<script language="JavaScript" src="i/sl2.21.js"></script>
+<script src="i/commoninf.js"></script>
+<script>
+function returned2(s){
+	if( top.oldlocation != '' )
+	{
+		top.frames['main'].navigate(top.oldlocation+'?'+s);
+		top.oldlocation='';
+	}
+	else
+	{
+		top.frames['main'].navigate('main.php?'+s)
+	}
+}
+
+var transfersale = true;
+var tologin = '{TOLOGIN}';
+
+function Sale(to_id, id, txt, transfer_kredit){
+	var s = prompt("Продать \""+txt+"\" к \""+tologin+"\". Укажите цену:", '');
+
+	// Продаем
+	if( s != null && s!= '' )
+	{
+	    if( confirm("Продать \""+txt+"\" к \""+tologin+"\" за "+parseFloat(s)+" кр. Вы заплатите "+transfer_kredit+"кр. за передачу! Ваш партнер по сделке должен открыть у себя окно обмена. Продолжить?") )
+		{
+		   location="main.php?to_id="+to_id+"&setobject="+id+"&sale="+s;
+		}
+	}
+}
+
+function transfer(to_id, login, txt, kredit, id){
+	s = '<table width=500 cellspacing=0 cellpadding=0><tr><td><table width=100% cellspacing=0 cellpadding=5 bgcolor=FFF6DD><tr><form action="main.php" method=post><input type=hidden name=FindLogin value=0><input type=hidden name=to_id value="'+to_id+'"><input type=hidden name=transfersale value="'+id+'"><td><b>'+login+'</b> <a href="inf.php?id='+to_id+'" target=_blank><img src=i/inf.gif width=12 height=11></a> предлагает Вам купить предмет:<br>'+txt+'<br>за <font color=red><b>'+kredit+' кр.</b></font><br>Проводим сделку?</td></tr><tr><td align=center><input type=submit value="  ДА  "> &nbsp;&nbsp; <input type=button value=" НЕТ " onclick="closehint3()"></td></tr></form></table></td></tr></table>';
+	s = crtmagic(0, 'Продажа предмета', s);
+
+	document.all("hint4").innerHTML = s;
+	document.all("hint4").style.visibility = "visible";
+	document.all("hint4").style.left = 100;
+	document.all("hint4").style.top = document.body.scrollTop+100;
+}
+
+function reloadit()
+{
+   if( tologin != '' )
+   {
+		location="main.php?FindLogin=0&to_id={TO_ID}";
+	}
+}
+</script>
+</head>
+<body bgcolor="e2e0e0">
+<div id="hint4" class="ahint"></div>
+<h3>Передача предметов/кредитов другому игроку</h3>
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<!-- BEGIN before_transfer -->
+		<td><script>findlogin('Передача предметов','main.php','findlogin', '')</script></td>
+		<!-- END before_transfer -->
+		<!-- BEGIN after_transfer -->
+		К кому передавать: <font color="red">{after_transfer.DRWFL}</font>&nbsp;&nbsp;<input class="btn" type="button" value="Сменить" onclick="findlogin('Передача предметов','main.php','findlogin', '')"><BR>
+		<!-- END after_transfer -->
+		<td align="right"><input class="btn" type="button" value="Вернуться" onclick="returned2('setcancel=1')"></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="right">{MESSAGE}</td>
+	</tr>
+</table>
+<table width="100%" cellspacing="0" cellpadding="0">
+<form action="main.php" method="post">
+	<tr>
+		<td valign="top" width="40%">
+		<!-- BEGIN after_transfer -->
+		<input type="hidden" name="to_id" value="{TO_ID}">
+		<br>У вас на счету: <font color="339900"><b>{MONEY}</b></font> кр.<br>
+		Передать кредиты, минимально 0.01 кр.<br>
+		Укажите передаваемую сумму: <input type="text" name="setkredit" maxlength="8" size="6">&nbsp;<input class="btn" type="submit" value="Передать">
+		<!-- END after_transfer -->
+		</td>
+		</form>
+		<form action="main.php" method="post">
+		<td valign="top" align="right">
+		<!-- BEGIN after_transfer -->
+			<table width="100%" cellspacing="0" cellpadding="0" bgcolor="A5A5A5">
+				<tr>
+					<td>
+						<table width="100%" cellspacing="0" cellpadding="3" bgcolor="#d4d2d2">
+							<tr>
+								<!-- END after_transfer -->
+								<!-- BEGIN inventory_header -->
+								<td {inventory_header.EDIT_1}align="center"><a href="main.php?to_id={TO_ID}&setedit=1">Обмундирование</a></td>
+								<td {inventory_header.EDIT_2}align="center"><a href="main.php?to_id={TO_ID}&setedit=2">Заклятия</a></td>
+								<td {inventory_header.EDIT_3}align="center"><a href="main.php?to_id={TO_ID}&setedit=3">Эликсиры</a></td>
+								<td {inventory_header.EDIT_4}align="center"><a href="main.php?to_id={TO_ID}&setedit=4">Прочее</a></td>
+								<!-- END inventory_header -->
+								<!-- BEGIN after_transfer -->
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><b>Рюкзак (масса: {OVERALL_MASS}/{MAX_MASS}, предметов: {ITEMS})</b></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<table width="100%" cellspacing="1" cellpadding="2" bgcolor="A5A5A5">
+							<!-- END after_transfer -->
+							<!-- BEGIN no_items -->
+							<tr>
+								<td align="center" bgcolor="#d5d5d5">Рюкзак пуст</td>
+							</tr>
+							<!-- END no_items -->
+							<!-- BEGIN items -->
+							<tr bgcolor="{items.ROW_CLASS}">
+								<td align="center" width="120"><img src="i/items/{items.IMG}.gif" alt="{items.NAME}"{items.ISMAGIC}><br>{items.ACTION}</td>
+								<td valign="top"><a href="./../bk/enc.php?item={items.IMG}" target="_blank">{items.NAME}</a>&nbsp;<img src="i/align{items.ALIGN}.gif" width="12" height="15"> (Масса: {items.WEIGHT}) {items.ARTEFACT} {items.GIFT}{items.DESTINY}<br>
+								<b>Цена: {items.PRICE} кр.</b><br>
+								Долговечность: {items.DURABILITY}<br>
+								{items.CHAR}
+								{items.REQUIRES}
+								{items.AFFECTS}
+								{items.PROPERTIES}
+								{items.FEATURES}
+								{items.INBUILD_MAGIC}
+								{items.COMMENT}
+								</td>
+							</tr>
+							<!-- END items -->
+							<!-- BEGIN after_transfer -->
+						</table>
+					</td>
+				</tr>
+			</table>
+			<!-- END after_transfer -->
+		</td>
+	</tr>
+</form>
+</table>
+</body>
+</html>

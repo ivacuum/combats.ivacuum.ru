@@ -1,0 +1,436 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="i/main.css">
+<link href="i/move/design3.css" rel="stylesheet" type="text/css">
+<meta content="text/html; charset=windows-1251" http-equiv="Content-type">
+{META}
+<script language="JavaScript" src="i/sl2.21.js"></script>
+<script src="i/commoninf.js"></script>
+</head>
+<body>
+<div id="hint4" class="ahint"></div>
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td>
+			<table width="100%" border="0" cellspacing="1" cellpadding="0">
+				<tr valign="top">
+					<td align="center">{DRWFL}</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<table border="0" cellpadding="0" cellspacing="0" class="posit">
+							<tr>
+								<td>
+									<table cellspacing="0" cellpadding="0">
+										<tr>
+											<td nowrap style="font-size: 10px"><span id="HP"></span>&nbsp;<img src="i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP1" width="1" height="8" id="HP1"><img src="i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP2" width="1" height="8" id="HP2"><span style="width: 1px; height: 10px"></span><img src="i/herz.gif" width="10" height="9" alt="Уровень жизни"></td>
+										</tr>
+										<!-- BEGIN mana -->
+										<tr>
+											<td nowrap style="font-size: 10px"><span id="Mana"></span>&nbsp;<img src="i/misc/bk_life_loose.gif" alt="Уровень маны" name="Mana1" width="1" height="8" id="Mana1"><img src="i/misc/bk_life_loose.gif" alt="Уровень маны" name="Mana2" width="1" height="8" id="Mana2"><span style="width: 1px; height: 10px"></span><img src="i/Mherz.gif" width="9" height="9" alt="Уровень маны"></td>
+										</tr>
+										<!-- END mana -->
+									</table>
+								</td>
+							</tr>
+							<script>top.setHP({CURRENT_HP},{MAX_HP},{HPSPEED});{MANA}</script>
+							<!-- BEGIN scrolls -->
+							<tr>
+								<td>
+									<table cellspacing="0" cellpadding="0">
+										<tr>
+											{I_SCROLL1}
+											{I_SCROLL2}
+											{I_SCROLL3}
+											{I_SCROLL4}
+											{I_SCROLL5}
+											<td><img src="i/items/w109.gif" width="40" height="25" alt="Пустой слот"></td>
+										</tr>
+									</table>
+									<table cellspacing="0" cellpadding="0">
+										<tr>
+											{I_SCROLL6}
+											{I_SCROLL7}
+											{I_SCROLL8}
+											{I_SCROLL9}
+											{I_SCROLL10}
+											<td><img src="i/items/w109.gif" width="40" height="25" alt="Пустой слот"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<!-- END scrolls -->
+							<tr>
+								<td>
+									<table border="0" cellspacing="0" cellpadding="0">
+										<tr valign="top">
+											<td>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														{I_HELMET}
+													</tr>
+													<tr>
+														{I_WEAPON}
+													</tr>
+													<tr>
+														{I_ARMOR}
+													</tr>
+													<tr>
+														{I_BELT}
+													</tr>
+												</table>
+											</td>
+											<td>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td align="center" valign="top"><a href="main.php?edit="><img src="i/chars/0/{OBRAZ}.gif" width="120" height="220" alt="{LOGIN} (Перейти в &quot;Инвентарь&quot;)"></a></td>
+													</tr>
+													<tr>
+														<td>
+															<table border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	{I_R_KARMAN}<td><img src="i/items/w15.gif" width="40" height="20" alt="пустой карман"></td>{I_L_KARMAN}
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														{I_EARRINGS}
+													</tr>
+													<tr>
+														{I_KULON}
+													</tr>
+													<tr>
+														{I_NARUCHI}
+													</tr>
+													<tr>
+														{I_GLOVES}
+													</tr>
+													<tr>
+														<td>
+															<table border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	{I_RING1}{I_RING2}{I_RING3}
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														{I_SHIELD}
+													</tr>
+													<tr>
+														{I_BOOTS}
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td align="left" valign="top" nowrap style="padding-left: 3px">
+					Сила: {STRENGTH}<br>
+					Ловкость: {AGILITY}<br>
+					Интуиция: {PERCEPTION}<br>
+					Выносливость: {VITALITY}<br>
+					{INTELLECT}
+					{WISDOM}
+					{SPIRITUALITY}
+					{FREEDOM}
+					{FREEDOM_OF_SPIRIT}
+					{HOLINESS}
+					{FREE_UPR}{FREE_SKILLS}
+					<hr>
+					Опыт: {EXP} ({NEXTEXP})<br>
+					Уровень: {LEVEL}<br>
+					Побед: {WINS}<br>
+					Поражений: {LOSSES}<br>
+					Ничьих: {DRAWS}<br>
+					Деньги: <b>{MONEY}</b> кр. <br>
+					{KLAN}
+					</td>
+				</tr>
+				<tr valign="top">
+					<td colspan="2"><small><!--<img src="i/sleep.gif" alt="Наложено заклятие молчания"> На персонажа наложено заклятие молчания. Будет молчать ещё 1 дн. 23 ч. 59 мин.--></small></td>
+				</tr>
+			</table>
+		</td>
+		<td align="right">{MESSAGE}<img src="i/1x1.gif" width="1" height="5"><br>
+		<script language="javascript" type="text/javascript">
+		function fastshow(content)
+		{
+			var el = document.getElementById("mmoves");
+			var o = window.event.srcElement;
+
+			if( content != '' && el.style.visibility != "visible" )
+			{
+				el.innerHTML = '<small>'+content+'</small>';
+			}
+
+			var x = window.event.clientX + document.documentElement.scrollLeft + document.body.scrollLeft - el.offsetWidth + 5;
+			var y = window.event.clientY + document.documentElement.scrollTop + document.body.scrollTop+20;
+
+			el.style.left = x + "px";
+			el.style.top  = y + "px";
+
+			if( el.style.visibility != "visible" )
+			{
+				el.style.visibility = "visible";
+			}
+		}
+
+		function hideshow()
+		{
+			document.getElementById("mmoves").style.visibility = 'hidden';	
+		}
+		</script>
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr align="right" valign="top">
+				<td><div align="center" style="width: 100%; font-weight: bold;">{ROOM_NAME}</div><div align="right" style="text-align: justify; width: 100%; padding: 3px, 10px, 3px, 3px;">{ROOM_DESC}</div></td>
+				<td>
+					<table width="80" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td>
+								<table width="80" border="0" cellspacing="0" cellpadding="0">
+									<tr>
+										<td colspan="3" align="center"><img src="i/move/navigatin_46.gif" width="80" height="4"></td>
+									</tr>
+									<tr>
+										<td colspan="3" align="center">
+											<table width="80" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td><img src="i/move/navigatin_48.gif" width="9" height="8"></td>
+													<td width="100%" bgcolor="#000000">
+														<table border="0" cellspacing="0" cellpadding="0">
+															<tr>
+																<td nowrap="nowrap" align="center"><div align="center" style="font-size: 4px; padding: 0px; border: solid black 0px; text-align: center" id="prcont"></div><script language="javascript" type="text/javascript">
+																var s = "";
+
+																for( i = 1; i <= 32; i++ )
+																{
+																	s += '<span id="progress'+i+'">&nbsp;</span>';
+																	
+																	if( i < 32 )
+																	{
+																		s+='&nbsp;';
+																	}
+																}
+																
+																document.getElementById('prcont').innerHTML=s;
+																</script></td>
+															</tr>
+														</table>
+													</td>
+													<td><img src="i/move/navigatin_50.gif" width="7" height="8"></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<!--
+									<tr>
+										<td>
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td><img src="i/move/navigatin_51.gif" width="31" height="8"></td>
+												</tr>
+												<tr>
+													<td><img src="i/move/navigatin_54.gif" width="9" height="20">{ARROW1}</td>
+												</tr>
+												<tr>
+													<td>{ARROW2}<img src="i/move/navigatin_60.gif" width="10" height="20" border="0"></td>
+												</tr>
+												<tr>
+													<td><img src="i/move/navigatin_63.gif" width="11" height="21">{ARROW3}</td>
+												</tr>
+												<tr>
+													<td><img src="i/move/navigatin_68.gif" width="31" height="8"></td>
+												</tr>
+											</table>
+										</td>
+										<td>
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td>{ARROW4}</td>
+												</tr>
+												<tr>
+													<td>{REFRESH}</td>
+												</tr>
+												<tr>
+													<td>{ARROW5}</td>
+												</tr>
+											</table>
+										</td>
+										<td>
+											<table width="100%" border="0" cellspacing="0" cellpadding="0">
+												<tr>
+													<td><img src="i/move/navigatin_53.gif" width="30" height="8"></td>
+												</tr>
+												<tr>
+													<td>{ARROW6}<img src="i/move/navigatin_57.gif" width="9" height="20"></td>
+												</tr>
+												<tr>
+													<td><img src="i/move/navigatin_61.gif" width="8" height="21">{ARROW7}</td>
+												</tr>
+												<tr>
+													<td>{ARROW8}<img src="i/move/navigatin_66.gif" width="9" height="20"></td>
+												</tr>
+												<tr>
+													<td><img src="i/move/navigatin_69.gif" width="30" height="8"></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									-->
+								</table>
+							</td>
+						</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td nowrap="nowrap" id="moveto">
+								<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
+									<!-- BEGIN links -->
+									<tr>
+										<td bgcolor="#D3D3D3"><img src="i/move/links.gif" width="9" height="7"></td>
+										<td bgcolor="#D3D3D3" nowrap><a href="{links.U_PATH}" onclick="return check_access();" class="menutop" title="{links.DESC}">{links.NAME}</a></td>
+									</tr>
+									<!-- END links -->
+								</table>
+							</td>
+						</tr>
+					</table>
+			<!-- <br><span class="menutop"><nobr>{ROOM_NAME}</nobr></span></td> -->
+				</tr>
+			</table>
+			<div id="mmoves" style="background-color:#FFFFCC; visibility:hidden; overflow:visible; position:absolute; border-color:#666666; border-style:solid; border-width: 1px; padding: 2px; white-space: nowrap;"></div>
+			<script language="javascript" type="text/javascript">
+			var progressEnd = 32;		// set to number of progress <span>'s.
+			var progressColor = '#00CC00';	// set to progress bar color
+			var mtime = parseInt('{GOING_TIME}');
+			if( !mtime || mtime <= 0)
+			{
+				mtime=0;
+			}
+
+			var progressInterval = Math.round(mtime*1000/progressEnd);	// set to time between updates (milli-seconds)
+			var is_accessible = true;
+			var progressAt = progressEnd;
+			var progressTimer;
+
+			function progress_clear()
+			{
+				for( var i = 1; i <= progressEnd; i++ ) document.getElementById('progress'+i).style.backgroundColor = 'transparent';
+				progressAt = 0;
+	
+				for(var t = 1; t <= 8; t++)
+				{
+					if( document.getElementById('m'+t) )
+					{
+						var tempname = document.getElementById('m'+t).children[0].src;
+
+						if( tempname.match(/b\.gif$/))
+						{
+							document.getElementById('m'+t).children[0].id = 'backend';
+						}
+
+						var newname;
+						newname = tempname.replace(/(b)?\.gif$/,'i.gif');
+						document.getElementById('m'+t).children[0].src = newname;
+					}
+				}
+	
+				is_accessible = false;
+				document.getElementById('moveto').disabled = true;
+			}
+
+			function progress_update()
+			{
+				progressAt++;
+				//if (progressAt > progressEnd) progress_clear();
+				if( progressAt > progressEnd )
+				{
+					for( var t = 1; t <= 8; t++ )
+					{
+						if( document.getElementById('m'+t) )
+						{
+							var tempname = document.getElementById('m'+t).children[0].src;
+							var newname;
+							newname = tempname.replace(/i\.gif$/,'.gif');
+
+							if( document.getElementById('m'+t).children[0].id == 'backend')
+							{
+								tempname = newname.replace(/\.gif$/,'b.gif');
+								newname = tempname;
+							}
+
+							document.getElementById('m'+t).children[0].src = newname;
+						}
+					}
+		
+					is_accessible = true;
+					document.getElementById('moveto').disabled = false;
+				}
+				else
+				{
+					document.getElementById('progress'+progressAt).style.backgroundColor = progressColor;
+					progressTimer = setTimeout('progress_update()',progressInterval);
+				}
+			}
+
+			function progress_stop()
+			{
+				clearTimeout(progressTimer);
+				progress_clear();
+			}
+
+			function check(it)
+			{
+				if( document.getElementById(it).disabled == true )
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+			function check_access()
+			{
+				return is_accessible;
+			}
+
+			if( mtime > 0 )
+			{
+				progress_clear();
+				progress_update();
+			}
+			else
+			{
+				for( var i = 1; i <= progressEnd; i++ )
+				{
+					document.getElementById('progress'+i).style.backgroundColor = progressColor;
+				}
+			}
+			</script>
+			<hr>
+			<form method="get" action="main.php" style="padding: 0px; margin: 2px;">
+			{BATTLE_BTN}
+			<input type="button" name="combats" value="Карта клуба" class="btn" onclick="location.href='main.php?clubmap=1';" style="font-weight: bold; width:  102px">
+			<input name="site" type="button" class="btn" id="site" onclick="window.open('./../index.php', 'site', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value=" Сайт ">
+			<input name="forum" type="button" class="btn" id="forum" onclick="window.open('./../forum', 'forum', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value=" Форум ">
+			</form>
+			<small><b>Внимание!</b> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <u>только взломщикам</u> для кражи вашего героя.<br><i>Администрация.</i></small></td>
+			</form>
+		</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

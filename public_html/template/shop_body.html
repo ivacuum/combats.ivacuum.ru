@@ -1,0 +1,256 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/move/design3.css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<script language="JavaScript" src="http://static.ivacuum.ru/i/sl2.21.js"></script>
+<script>
+function AddCount(name, txt){
+	s = '<table width=225 cellspacing=1 cellpadding=2><tr><td align=center><input type=hidden name=set value="'+name+'"><img src="http://static.ivacuum.ru/i/items/'+name+'.gif" alt="'+txt+'"><br />«<b>'+txt+'</b>»<br /><span style="height: 26px"></span>Количество (шт.) <input type=text name=count style="width: 30px"> &nbsp;<input class=btn style="font-size: 9px; width: 30px; height: 17px" type=submit value=" »» "></td></tr></table>';
+	s = crtmagic(6, 'Купить несколько штук', s);
+
+	document.all("hint4").innerHTML = s;
+	document.all("hint4").style.visibility = "visible";
+	document.all("hint4").style.left = 125;
+	document.all("hint4").style.top = document.body.scrollTop+225;
+	document.all("count").focus();
+}
+function closehint3()
+{
+	document.all("hint4").style.visibility="hidden";
+}
+</script>
+<script src='i/commoninf.js'></script>
+<!-- BEGIN admin -->
+<script>
+function item_add(name, txt, price)
+{
+	if( price == 0 )
+	{
+		s = '<br />У вас недостаточно денег<br /><br />';
+	}
+	else
+	{
+		s = '<table height="130" width="240" cellspacing="1" cellpadding="2"><tr><td align="center"><input type="hidden" name="addcount" value="'+name+'"><img src="http://static.ivacuum.ru/i/items/'+name+'.gif" alt="'+txt+'"><br />Привезти в магазин предмет<br />«<b>'+txt+'</b>»<br />по '+price+' кр. за штуку?<br /><span style="height: 26px"></span>Количество (шт.) &nbsp;<input type=text name=count style="width: 30px"> &nbsp;<input class=btn style="font-size: 9px; width: 30px; height: 17px" type=submit value=" »» "></td></tr></table>';
+	}
+
+	s = crtmagic(6, 'Привезти вещь', s);
+
+	document.all("hint4").innerHTML = s;
+	document.all("hint4").style.visibility = "visible";
+	document.all("hint4").style.left = 150;
+	document.all("hint4").style.top = document.body.scrollTop+125;
+	document.all("count").focus();
+}
+</script>
+<!-- END admin -->
+</head>
+<body leftmargin="5" topmargin="5" marginwidth="5" marginheight="5" bgcolor="e2e0e0">
+<table width="99.4%" cellspacing="0" cellpadding="0">
+<form action="/main.pl" method="post">
+	<tr>
+		<td><h3>Магазин</td>
+		<td align="right">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr align="right" valign="top">
+					<td></td>
+					<td>
+						<table width="80" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="0" valign="bottom" align="left"><a href="shop.pl"><img src="http://static.ivacuum.ru/i/move/rel_1.gif" width="15" height="16" alt="Обновить" border="0"></a></td>
+								<td>
+									<table width="80" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td colspan="3" align="center"><img src="http://static.ivacuum.ru/i/move/navigatin_462.gif" width="80" height="4"></td>
+										</tr>
+										<tr>
+											<td colspan="3" align="center">
+												<table width="80" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td><img src="http://static.ivacuum.ru/i/move/navigatin_481.gif" width="9" height="8"></td>
+														<td width="100%" bgcolor="#000000">
+															<table border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td nowrap="nowrap" align="center"><div align="center" style="font-size: 4px; padding: 0px; border: solid black 0px; text-align: center" id="prcont"></div>
+																	<script language="javascript" type="text/javascript">
+																	var s="";for (i=1; i<=32; i++) {s+='<span id="progress'+i+'">&nbsp;</span>';if (i<32) {s+='&nbsp;'};}document.getElementById('prcont').innerHTML=s;
+																	</script>
+																	</td>
+																</tr>
+															</table>
+														</td>
+														<td><img src="http://static.ivacuum.ru/i/move/navigatin_50.gif" width="7" height="8"></td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3"><img src="http://static.ivacuum.ru/i/move/navigatin_tt1_532.gif" width="80" height="5"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td nowrap="nowrap" id="moveto">
+									<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
+										<!-- BEGIN links -->
+										<tr>
+											<td bgcolor="#D3D3D3"><img src="http://static.ivacuum.ru/i/move/links.gif" width="9" height="7"></td>
+											<td bgcolor="#D3D3D3" nowrap><a href="{links.U_PATH}" onclick="return check_access();" class="menutop" title="{links.DESC}">{links.NAME}</a></td>
+										</tr>
+										<!-- END links -->
+									</table>
+								</td>
+							</tr>
+						</table>
+						<!-- <br /><span class="menutop"><nobr>Магазин</nobr></span>-->
+					</td>
+				</tr>
+			</table>
+			<div id="mmoves" style="background-color:#FFFFCC; visibility: hidden; overflow: visible; position: absolute; border-color: #666666; border-style: solid; border-width: 1px; padding: 2px; white-space: nowrap;"></div>
+			<script language="javascript" type="text/javascript">
+			var progressEnd = 32;		// set to number of progress <span>'s.
+			var progressColor = '#00CC00';	// set to progress bar color
+			var mtime = parseInt('{GOING_TIME}');
+			if (!mtime || mtime<=0) {mtime=0;}
+			var progressInterval = Math.round(mtime*1000/progressEnd);	// set to time between updates (milli-seconds)
+			var is_accessible = true;
+			var progressAt = progressEnd;
+			var progressTimer;
+			function progress_clear() {
+				for (var i = 1; i <= progressEnd; i++) document.getElementById('progress'+i).style.backgroundColor = 'transparent';
+				progressAt = 0;
+	
+				is_accessible = false;
+				document.getElementById('moveto').disabled = true;
+			}
+			function progress_update() {
+				progressAt++;
+				//if (progressAt > progressEnd) progress_clear();
+				if (progressAt > progressEnd) {
+		
+					is_accessible = true;
+					document.getElementById('moveto').disabled = false;
+				} else {document.getElementById('progress'+progressAt).style.backgroundColor = progressColor;
+					progressTimer = setTimeout('progress_update()',progressInterval);
+				}
+			}
+			function progress_stop() {
+				clearTimeout(progressTimer);
+				progress_clear();
+			}
+			function check(it) {
+				if (document.getElementById(it).disabled == true) {return false} else {return true;}
+			}
+			function check_access () {
+				return is_accessible;
+			}
+			if (mtime>0) {
+				progress_clear();
+				progress_update();
+			} else {
+				for (var i = 1; i <= progressEnd; i++) {
+					document.getElementById('progress'+i).style.backgroundColor = progressColor;
+				}
+			}
+			</script>
+		</td>
+	</tr>
+</form>
+</table>
+{MESSAGE}
+<table width="100%" cellspacing="0" cellpadding="4">
+	<tr>
+	<form method="post" action="/shop.pl">
+		<td align="left" valign="top">
+			<table width="100%" cellspacing="0" cellpadding="0" bgcolor="A5A5A5">
+				<tr>
+					<td align="center"><b>Отдел "{OTDEL_NAME}"</b>{OTDEL_SALE}</td>
+				</tr>
+				<tr>
+					<td>
+						<table width="100%" cellspacing="1" cellpadding="2" bgcolor="A5A5A5">
+							<!-- BEGIN items -->
+							<tr bgcolor="{items.ROW_CLASS}">
+								<td align="center"><img src="http://static.ivacuum.ru/i/items/{items.IMG}.gif"><br><a href="/shop.pl?set={items.IMG}">купить</a>&nbsp;<img src="http://static.ivacuum.ru/i/up.gif" width="11" height="11" border="0" alt="Купить несколько штук" style="cursor:hand" onclick="AddCount('{items.IMG}', '{items.NAME}')">{items.ADDCOUNT}</td>
+								<td valign="top"><a href="/encicl/item/{items.IMG}.html" target="_blank">{items.NAME}</a> <img src="http://static.ivacuum.ru/i/align{items.ALIGN}.gif" width="12" height="15">  (Масса: {items.WEIGHT}) {items.ARTEFACT}<br>
+								<b>Цена: {items.PRICE} кр.</b>{items.COUNT}<br>
+								Долговечность: {items.DURABILITY}<br>
+								{items.CHAR}
+								{items.REQUIRES}
+								{items.AFFECTS}
+								{items.PROPERTIES}
+								{items.FEATURES}
+								{items.INBUILD_MAGIC}
+								{items.COMMENT}
+								</td>
+							</tr>
+							<!-- END items -->
+							<!-- BEGIN no_items -->
+							<tr bgcolor="#d5d5d5">
+								<td align="center">Прилавок магазина пуст</td>
+							</tr>
+							<!-- END no_items -->
+							<!-- BEGIN sale_items -->
+							<tr bgcolor="{sale_items.ROW_CLASS}">
+								<td align="center"><img src="http://static.ivacuum.ru/i/items/{sale_items.IMG}.gif"><br>{sale_items.SALE}</td>
+								<td valign="top"><a href="/encicl/item/{sale_items.IMG}.html" target="_blank">{sale_items.NAME}</a> <img src="http://static.ivacuum.ru/i/align{sale_items.ALIGN}.gif" width="12" height="15">  (Масса: {sale_items.WEIGHT}) <br>
+								<b>Цена: {sale_items.PRICE} кр.</b><br>
+								Долговечность: {sale_items.DURABILITY}<br>
+								{sale_items.CHAR}
+								{sale_items.REQUIRES}
+								{sale_items.AFFECTS}
+								{sale_items.PROPERTIES}
+								{sale_items.FEATURES}
+								{sale_items.INBUILD_MAGIC}
+								{sale_items.COMMENT}
+								</td>
+							</tr>
+							<!-- END sale_items -->
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" width="280">
+		<center><b>Масса всех ваших вещей: {WEIGHT}<br>
+		У вас в наличии: <font color="339900">{MONEY}</font> кр.</b></center>
+		<div style="margin-left: 15px; margin-top: 10px;">
+		<input type="submit" value="Продать вещи" name="sale"><br>
+<!--	<input type="submit" value="Обмен предметов" name="exchange"><br> -->
+
+		<div style="background-color: #d2d0d0; padding: 1px"><center><b>Отделы магазина</b></center></div>
+		<a href="/shop.pl?otdel=knifes">Оружие: кастеты, ножи</a><br>
+		<a href="/shop.pl?otdel=axes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;топоры</a><br>
+		<a href="/shop.pl?otdel=clubs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;дубины, булавы</a><br>
+		<a href="/shop.pl?otdel=swords">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;мечи</a><br>
+		<a href="/shop.pl?otdel=bows">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;луки и арбалеты</a><br>
+		<a href="/shop.pl?otdel=staffs">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;магические посохи</a><br>
+		<a href="/shop.pl?otdel=boots">Одежда: сапоги</a><br>
+		<a href="/shop.pl?otdel=gloves">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;перчатки</a><br>
+		<a href="/shop.pl?otdel=shirts">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;рубахи</a><br>
+		<a href="/shop.pl?otdel=larmor">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;легкая броня</a><br>
+		<a href="/shop.pl?otdel=harmor">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;тяжелая броня</a><br>
+		<a href="/shop.pl?otdel=helmets">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;шлемы</a><br>
+		<a href="/shop.pl?otdel=naruchi">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;наручи</a><br>
+		<a href="/shop.pl?otdel=belts">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;пояса</a><br>
+		<a href="/shop.pl?otdel=shields">Щиты</a><br>
+		<a href="/shop.pl?otdel=clips">Ювелирные товары: серьги</a><br>
+		<a href="/shop.pl?otdel=amulets">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ожерелья</a><br>
+		<a href="/shop.pl?otdel=rings">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;кольца</a><br>
+		<a href="/shop.pl?otdel=neutralspells">Заклинания: нейтральные</a><br>
+		<a href="/shop.pl?otdel=atdefspells">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;боевые и защитные</a><br>
+		<a href="/shop.pl?otdel=amunition">Амуниция</a><br>
+		<a href="/shop.pl?otdel=extraitems">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Дополнительные предметы</a><br>
+		<a href="/shop.pl?otdel=potions">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Эликсиры</a><br>
+		<a href="/shop.pl?otdel=gifts">Подарки</a><br>
+		&nbsp; &nbsp; <a href="/shop.pl?present=1">Сделать подарки</a></div>
+		<div id="hint4" class="ahint"></div>
+		</td>
+	</form>
+	</tr>
+</table>
+</body>
+</html>

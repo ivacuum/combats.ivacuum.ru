@@ -1,0 +1,373 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/move/design3.css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+{META}
+<script language="JavaScript" src="http://static.ivacuum.ru/i/sl2.21.js"></script>
+<script src="http://static.ivacuum.ru/i/commoninf.js"></script>
+</head>
+<body>
+<div id="hint4" class="ahint"></div>
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td>
+			<table width="100%" border="0" cellspacing="1" cellpadding="0">
+				<tr valign="top">
+					<td align="center">{DRWFL}</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<table border="0" cellpadding="0" cellspacing="0" class="posit">
+							<tr>
+								<td>
+									<table cellspacing="0" cellpadding="0">
+										<tr>
+											<td nowrap style="font-size: 10px"><span id="HP"></span>&nbsp;<img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP1" width="1" height="8" id="HP1"><img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP2" width="1" height="8" id="HP2"><span style="width: 1px; height: 10px"></span><img src="http://static.ivacuum.ru/i/herz.gif" width="10" height="9" alt="Уровень жизни"></td>
+										</tr>
+										<!-- BEGIN mana -->
+										<tr>
+											<td nowrap style="font-size: 10px"><span id="Mana"></span>&nbsp;<img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень маны" name="Mana1" width="1" height="8" id="Mana1"><img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень маны" name="Mana2" width="1" height="8" id="Mana2"><span style="width: 1px; height: 10px"></span><img src="http://static.ivacuum.ru/i/Mherz.gif" width="9" height="9" alt="Уровень маны"></td>
+										</tr>
+										<!-- END mana -->
+									</table>
+								</td>
+							</tr>
+							<script>top.setHP({CURRENT_HP},{MAX_HP},{HPSPEED});{MANA}</script>
+							<!-- BEGIN scrolls -->
+							<tr>
+								<td>
+									<table cellspacing="0" cellpadding="0">
+										<tr>
+											<td>{scrolls.1}</td>
+											<td>{scrolls.2}</td>
+											<td>{scrolls.3}</td>
+											<td>{scrolls.4}</td>
+											<td>{scrolls.5}</td>
+											<td><img src="http://static.ivacuum.ru/i/items/w109.gif" width="40" height="25" alt="Пустой слот" /></td>
+										</tr>
+									</table>
+									<table cellspacing="0" cellpadding="0">
+										<tr>
+											<td>{scrolls.6}</td>
+											<td>{scrolls.7}</td>
+											<td>{scrolls.8}</td>
+											<td>{scrolls.9}</td>
+											<td>{scrolls.10}</td>
+											<td><img src="http://static.ivacuum.ru/i/items/w109.gif" width="40" height="25" alt="Пустой слот" /></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<!-- END scrolls -->
+							<tr>
+								<td>
+									<table border="0" cellspacing="0" cellpadding="0">
+										<tr valign="top">
+											<td>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td>{I_HELMET}</td>
+													</tr>
+													<tr>
+														<td>{I_WEAPON}</td>
+													</tr>
+													<tr>
+														<td>{I_ARMOR}</td>
+													</tr>
+													<tr>
+														<td>{I_BELT}</td>
+													</tr>
+												</table>
+											</td>
+											<td>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td align="center" valign="top"><a href="/main.pl?edit="><img src="http://static.ivacuum.ru/i/chars/{GENDER}/{OBRAZ}.gif" width="120" height="220" alt="{LOGIN} (Перейти в &quot;Инвентарь&quot;)"></a></td>
+													</tr>
+													<tr>
+														<td>
+															<table border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td>{I_R_KARMAN}</td><td><img src="http://static.ivacuum.ru/i/items/w15.gif" width="40" height="20" alt="пустой карман"></td><td>{I_L_KARMAN}</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td>
+												<table width="100%" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td>{I_EARRINGS}</td>
+													</tr>
+													<tr>
+														<td>{I_KULON}</td>
+													</tr>
+													<tr>
+														<td>{I_NARUCHI}</td>
+													</tr>
+													<tr>
+														<td>{I_GLOVES}</td>
+													</tr>
+													<tr>
+														<td>
+															<table border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td>{I_RING1}</td><td>{I_RING2}</td><td>{I_RING3}</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr>
+														<td>{I_SHIELD}</td>
+													</tr>
+													<tr>
+														<td>{I_BOOTS}</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td align="left" valign="top" nowrap style="padding-left: 3px">
+					Сила: {STRENGTH}<br>
+					Ловкость: {AGILITY}<br>
+					Интуиция: {PERCEPTION}<br>
+					Выносливость: {VITALITY}<br>
+					{INTELLECT}
+					{WISDOM}
+					{SPIRITUALITY}
+					{FREEDOM}
+					{FREEDOM_OF_SPIRIT}
+					{HOLINESS}
+					{FREE_UPR}{FREE_SKILLS}
+					<hr>
+					Опыт: {EXP} ({NEXTEXP})<br>
+					Уровень: {LEVEL}<br>
+					Побед: {WINS}<br>
+					Поражений: {LOSSES}<br>
+					Ничьих: {DRAWS}<br>
+					Деньги: <b>{MONEY}</b> кр. <br>
+					{KLAN}
+					</td>
+				</tr>
+				<tr valign="top">
+					<td colspan="2"><small><!--<img src="http://static.ivacuum.ru/i/sleep.gif" alt="Наложено заклятие молчания"> На персонажа наложено заклятие молчания. Будет молчать ещё 1 дн. 23 ч. 59 мин.--></small></td>
+				</tr>
+			</table>
+		</td>
+		<td align="right">{MESSAGE}<img src="http://static.ivacuum.ru/i/1x1.gif" width="1" height="5"><br>
+		<script language="javascript" type="text/javascript">
+		function solo(n)
+		{
+			if( is_accessible == true )
+			{
+				window.location.href = '/main.pl?path='+n;
+			}
+		}
+
+		function imover(im)
+		{
+			im.filters.Glow.Enabled=true;
+		}
+
+		function imout(im)
+		{
+			im.filters.Glow.Enabled=false;
+		}
+
+		function Down()
+		{
+			top.CtrlPress = window.event.ctrlKey;
+		}
+
+		document.onmousedown = Down;
+		</script>
+		<style type="text/css">
+		img.aFilter {
+			filter: Glow(color=#DDDDDD,Strength=2,Enabled=0);
+			cursor: hand
+		}
+
+		hr {
+			height: 1px;
+		}
+		</style>
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr align="right" valign="top">
+				<td>
+				{ROOMS}
+				<div style="position: absolute; right: 0px; top: 0px; width: 1px; height: 1px; z-index: 101; overflow: visible;">
+				<table width="80" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td width="0" valign="bottom" align="left"><a href="main.php"><img src="http://static.ivacuum.ru/i/move/rel_1.gif" width="15" height="16" alt="Обновить" border="0"></a></td>
+						<td>
+							<table width="80" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td colspan="3" align="center"><img src="http://static.ivacuum.ru/i/move/navigatin_462s.gif" width="80" height="3"></td>
+								</tr>
+								<tr>
+									<td colspan="3" align="center">
+										<table width="80" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td><img src="http://static.ivacuum.ru/i/move/navigatin_481.gif" width="9" height="8"></td>
+												<td width="100%" bgcolor="#000000">
+													<table border="0" cellspacing="0" cellpadding="0">
+														<tr>
+															<td nowrap="nowrap" align="center"><div align="center" style="font-size: 4px; padding: 0px; border: solid black 0px; text-align: center" id="prcont"></div>
+															<script language="javascript" type="text/javascript">
+															var s="";for (i=1; i<=32; i++) {s+='<span id="progress'+i+'">&nbsp;</span>';if (i<32) {s+='&nbsp;'};}document.getElementById('prcont').innerHTML=s;
+															</script></td>
+														</tr>
+													</table>
+												</td>
+												<td><img src="http://static.ivacuum.ru/i/move/navigatin_50s.gif" width="7" height="8"></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3"><img src="http://static.ivacuum.ru/i/move/navigatin_tt1_532.gif" width="80" height="5"></td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				</div>
+				</div>
+				<div align="right" style="text-align: justify; width: 100%; padding: 3px;"><small>{ROOM_DESC}</small></div></td>
+				<td><div style="visibility: hidden; height: 0px" id="moveto">0</div>
+				<!-- <br /><span class="menutop"><nobr>{ROOM_NAME}</nobr></span>-->
+				</td>
+			</tr>
+		</table>
+			<div id="mmoves" style="background-color:#FFFFCC; visibility:hidden; overflow:visible; position:absolute; border-color:#666666; border-style:solid; border-width: 1px; padding: 2px; white-space: nowrap; text-align: left; font-size: 11px;"></div>
+			<script language="javascript" type="text/javascript">
+			var progressEnd = 32;		// set to number of progress <span>'s.
+			var progressColor = '#00CC00';	// set to progress bar color
+			var mtime = parseInt('{GOING_TIME}');
+			if( !mtime || mtime <= 0)
+			{
+				mtime=0;
+			}
+
+			var progressInterval = Math.round(mtime*1000/progressEnd);	// set to time between updates (milli-seconds)
+			var is_accessible = true;
+			var progressAt = progressEnd;
+			var progressTimer;
+
+			function progress_clear()
+			{
+				for( var i = 1; i <= progressEnd; i++ ) document.getElementById('progress'+i).style.backgroundColor = 'transparent';
+				progressAt = 0;
+	
+				for(var t = 1; t <= 8; t++)
+				{
+					if( document.getElementById('m'+t) )
+					{
+						var tempname = document.getElementById('m'+t).children[0].src;
+
+						if( tempname.match(/b\.gif$/))
+						{
+							document.getElementById('m'+t).children[0].id = 'backend';
+						}
+
+						var newname;
+						newname = tempname.replace(/(b)?\.gif$/,'i.gif');
+						document.getElementById('m'+t).children[0].src = newname;
+					}
+				}
+	
+				is_accessible = false;
+				document.getElementById('moveto').disabled = true;
+			}
+
+			function progress_update()
+			{
+				progressAt++;
+				//if (progressAt > progressEnd) progress_clear();
+				if( progressAt > progressEnd )
+				{
+					for( var t = 1; t <= 8; t++ )
+					{
+						if( document.getElementById('m'+t) )
+						{
+							var tempname = document.getElementById('m'+t).children[0].src;
+							var newname;
+							newname = tempname.replace(/i\.gif$/,'.gif');
+
+							if( document.getElementById('m'+t).children[0].id == 'backend')
+							{
+								tempname = newname.replace(/\.gif$/,'b.gif');
+								newname = tempname;
+							}
+
+							document.getElementById('m'+t).children[0].src = newname;
+						}
+					}
+		
+					is_accessible = true;
+					document.getElementById('moveto').disabled = false;
+				}
+				else
+				{
+					document.getElementById('progress'+progressAt).style.backgroundColor = progressColor;
+					progressTimer = setTimeout('progress_update()',progressInterval);
+				}
+			}
+
+			function progress_stop()
+			{
+				clearTimeout(progressTimer);
+				progress_clear();
+			}
+
+			function check(it)
+			{
+				if( document.getElementById(it).disabled == true )
+				{
+					return false;
+				}
+				else
+				{
+					return true;
+				}
+			}
+
+			function check_access()
+			{
+				return is_accessible;
+			}
+
+			if( mtime > 0 )
+			{
+				progress_clear();
+				progress_update();
+			}
+			else
+			{
+				for( var i = 1; i <= progressEnd; i++ )
+				{
+					document.getElementById('progress'+i).style.backgroundColor = progressColor;
+				}
+			}
+			</script>
+			<hr>
+			<form method="get" action="/main.pl" style="padding: 0px; margin: 2px;">
+			{BATTLE_BTN}
+			<input type="button" name="combats" value="Карта клуба" class="btn" onclick="location.href='/main.pl?clubmap=1';" style="font-weight: bold; width:  102px">
+			<input name="site" type="button" class="btn" id="site" onclick="window.open('http://ivacuum.ru/', 'site', 'location=yes,menubar=yes,status=yes,resizable=yes,toolbar=yes,scrollbars=yes,scrollbars=yes')" value=" Сайт ">
+			</form>
+			<small><b>Внимание!</b> Никогда и никому не говорите пароль от своего персонажа. Не вводите пароль на других сайтах, типа "новый город", "лотерея", "там, где все дают на халяву". Пароль не нужен ни паладинам, ни кланам, ни администрации, <u>только взломщикам</u> для кражи вашего героя.<br><i>Администрация.</i></small></td>
+			</form>
+		</td>
+	</tr>
+</table>
+</div>
+</body>
+</html>

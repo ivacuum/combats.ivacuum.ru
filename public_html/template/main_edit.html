@@ -1,0 +1,269 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/move/design3.css">
+
+<script language="JavaScript" src="http://static.ivacuum.ru/i/sl2.21.js"></script>
+<script src="http://static.ivacuum.ru/i/commoninf.js"></script>
+<script>
+function drop(name, id, txt)
+{
+	dialogconfirm('Выбросить предмет?', 'main.php', '<table width="100%"><td><img src="http://static.ivacuum.ru/i/items/'+name+'.gif"></td><td>Предмет <nobr><b>\''+txt+'\'</b></nobr> будет утерян, вы уверены ?</table>'+
+	'<input type="checkbox" name="dropall" value="'+txt+'"><small> Все предметы этого вида</small>'+
+	'<input type="hidden" name="drop" value="'+name+'"><input type="hidden" name="name" value="'+txt+'"><input type="hidden" name="id" value="'+id+'">');
+}
+function kmp()
+{
+	s = '<table width=400 cellspacing=1 cellpadding=2><tr><form action="main.php" method="post"><td>Запомнить надетый комплект одежды для быстрого переодевания.<br />Введите название комплекта: <input type=text name=savekmp maxlength=30><br /><br /><center><input class="btn" type=submit value="Запомнить"></center></td></form></tr></table>';
+	s = crtmagic(0, 'Запомнить комплект одежды', s);
+
+	document.all("hint4").innerHTML = s;
+	document.all("hint4").style.visibility = "visible";
+	document.all("hint4").style.left = 100;
+	document.all("hint4").style.top = 100;
+	document.all("savekmp").focus();
+}
+function subm(event)
+{
+	if( (event.keyCode == 13) || (event.keyCode == 10) )
+	{
+		document.F1.unlock.click();
+	}
+}
+</script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="e2e0e0" onload="top.setHP({CURRENT_HP},{MAX_HP},{HPSPEED});{MANA}">
+<div id="mmoves" style="background-color: #FFFFCC; visibility: hidden; overflow: visible; position: absolute; border-color: #666666; border-style: solid; border-width: 1px; padding: 2px; white-space: nowrap; text-align: left; font-size: 11px;"></div>
+<div id="hint4" class="ahint"></div>
+<form method="post" action="/main.pl" name="F1">
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td>
+			<table border="0" cellspacing="1" cellpadding="0">
+				<tr valign="top">
+					<td align="center">{DRWFL}</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr valign="top">
+					<td>
+						<table width="250" border="0" cellpadding="1" cellspacing="0">
+							<tr>
+								<td align="left" valign="top">
+									<table  border="0" cellspacing="0" cellpadding="0" class="posit">
+										<tr>
+											<td>
+												<table cellspacing="0" cellpadding="0">
+													<tr>
+														<td nowrap style="font-size: 10px"><span id="HP"></span>&nbsp;<img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP1" width="1" height="8" id="HP1"><img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP2" width="1" height="8" id="HP2"><span style="width: 1px; height: 10px"></span><img src="http://static.ivacuum.ru/i/herz.gif" width="10" height="9" alt="Уровень жизни"></td>
+													</tr>
+													<!-- BEGIN mana -->
+													<tr>
+														<td nowrap style="font-size: 10px"><span id="Mana"></span>&nbsp;<img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень маны" name="Mana1" width="1" height="8" id="Mana1"><img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень маны" name="Mana2" width="1" height="8" id="Mana2"><span style="width: 1px; height: 10px"></span><img src="http://static.ivacuum.ru/i/Mherz.gif" width="9" height="9" alt="Уровень маны"></td>
+													</tr>
+													<!-- END mana -->
+												</table>
+											</td>
+										</tr>
+										<!-- BEGIN scrolls -->
+										<tr>
+											<td>
+												<table cellspacing="0" cellpadding="0">
+													<tr>
+														<td>{I_SCROLL1}</td>
+														<td>{I_SCROLL2}</td>
+														<td>{I_SCROLL3}</td>
+														<td>{I_SCROLL4}</td>
+														<td>{I_SCROLL5}</td>
+														<td><img src="http://static.ivacuum.ru/i/items/w109.gif" width="40" height="25" alt="Пустой слот"></td>
+													</tr>
+												</table>
+												<table cellspacing="0" cellpadding="0">
+													<tr>
+														<td>{I_SCROLL6}</td>
+														<td>{I_SCROLL7}</td>
+														<td>{I_SCROLL8}</td>
+														<td>{I_SCROLL9}</td>
+														<td>{I_SCROLL10}</td>
+														<td><img src="http://static.ivacuum.ru/i/items/w109.gif" width="40" height="25" alt="Пустой слот"></td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<!-- END scrolls -->
+										<tr>
+											<td>
+												<table border="0" cellspacing="0" cellpadding="0" width="100%">
+													<tr valign="top">
+														<td>
+															<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td>{I_HELMET}</td>
+																</tr>
+																<tr>
+																	<td>{I_WEAPON}</td>
+																</tr>
+																<tr>
+																	<td>{I_ARMOR}</td>
+																</tr>
+																<tr>
+																	<td>{I_BELT}</td>
+																</tr>
+															</table>
+														</td>
+														<td>
+															<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td align="center" valign="top"><a href="/main.pl?skills=1"><img src="http://static.ivacuum.ru/i/chars/0/{OBRAZ}.gif" width="120" height="220" alt="{LOGIN} (Перейти в &quot;Умения&quot;)" oncontextmenu="top.returned(); event.returnValue=false;"></a></td>
+																</tr>
+																<tr>
+																	<td>
+																		<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+																			<tr>
+																				<td>{I_R_KARMAN}</td><td><img src="http://static.ivacuum.ru/i/items/w15.gif" width="40" height="20" alt="пустой карман"></td><td>{I_L_KARMAN}</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+														<td>
+															<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td>{I_CLIP}</td>
+																</tr>
+																<tr>
+																	<td>{I_AMULET}</td>
+																</tr>
+																<tr>
+																	<td>{I_BRASLET}</td>
+																</tr>
+																<tr>
+																	<td>{I_GLOVES}</td>
+																</tr>
+																<tr>
+																	<td>
+																		<table cellspacing="0" cellpadding="0">
+																			<tr>
+																				<td>{I_RING1}</td>
+																				<td>{I_RING2}</td>
+																				<td>{I_RING3}</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+																<tr>
+																	<td>{I_SHIELD}</td>
+																</tr>
+																<tr>
+																	<td>{I_BOOTS}</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="left" valign="top"><center><small>
+								<a href="/main.pl?savebattlekom=1">Запомнить основной комплект</a><br><br>
+								<a href="/main.pl?setdown=all">Снять все</a>
+								{SAVE_KMP}
+								<p style="margin-left: 10px;" align="left"><small>{KMPS}</small></p>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td align="left" valign="top" nowrap>
+					Сила: {STRENGTH}<br>
+					Ловкость: {AGILITY}<br>
+					Интуиция: {PERCEPTION}<br>
+					Выносливость: {VITALITY}<br>
+					{INTELLECT}
+					{WISDOM}
+					{SPIRITUALITY}
+					{FREEDOM}
+					{FREEDOM_OF_SPIRIT}
+					{HOLINESS}
+					{FREE_UPR}
+					{FREE_SKILLS}
+					<hr>
+					Опыт: {EXP} ({NEXTEXP})<br>
+					Уровень: {LEVEL}<br>
+					Побед: {WINS}<br>
+					Поражений: {LOSSES}<br>
+					Ничьих: {DRAWS}<br>
+					Деньги: <b>{MONEY}</b> кр. <br>
+					{KLAN}
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" width="100%"><img src="http://static.ivacuum.ru/i/1x1.gif" width="1" height="5">{MESSAGE}<div align="right">
+		{OBRAZ_BUTTON}
+		<input type="button" value="Умения" onclick="top.cht('/main.pl?skills=1')">
+		<input type="submit" name="editanketa" value="Анкета" title="Редактировать анкетные данные">
+		<input type="submit" name="changepsw" value="Безопасность" title="Сменить пароль/email" style="font-weight: bold;">
+		<input type="submit" name="schet" value="Отчет о переводах" title="Сделать выписку о ваших переводах кредитов/предметов">
+		<input type="button" value="Вернуться" onclick="top.returned()"></div>
+			<table width="100%" cellspacing="0" cellpadding="0" bgcolor="A5A5A5">
+				<tr>
+					<td>
+						<table width="100%" cellspacing="0" cellpadding="3" bgcolor="#d4d2d2">
+							<tr>
+								<!-- BEGIN inventory_header -->
+								<td {inventory_header.EDIT_1}align="center"><a href="/main.pl?edit=1">Обмундирование</a></td>
+								<td {inventory_header.EDIT_2}align="center"><a href="/main.pl?edit=2">Заклятия</a></td>
+								<td {inventory_header.EDIT_3}align="center"><a href="/main.pl?edit=3">Эликсиры</a></td>
+								<td {inventory_header.EDIT_4}align="center"><a href="/main.pl?edit=4">Прочее</a></td>
+								<!-- END inventory_header -->
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"><b>Рюкзак (масса: {OVERALL_MASS}/{MAX_MASS}, предметов: {ITEMS})</b></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<table width="100%" cellspacing="1" cellpadding="2" bgcolor="A5A5A5">
+							<!-- BEGIN no_items -->
+							<tr>
+								<td align="center" bgcolor="#e2e0e0">ПУСТО</td>
+							</tr>
+							<!-- END no_items -->
+							<!-- BEGIN items -->
+							<tr bgcolor="{items.ROW_CLASS}">
+								<td align="center" width="120"><img src="http://static.ivacuum.ru/i/items/{items.IMG}.gif" alt="{items.NAME}"{items.ISMAGIC}><br>{items.ACTION}</td>
+								<td valign="top"><a href="/encicl/item/{items.IMG}.html" target="_blank">{items.NAME}</a>&nbsp;<img src="http://static.ivacuum.ru/i/align{items.ALIGN}.gif" width="12" height="15"> (Масса: {items.WEIGHT}) {items.ARTEFACT} {items.GIFT}{items.FIT}<br>
+								<b>Цена: {items.PRICE} кр.</b><br>
+								Долговечность: {items.DURABILITY}<br>
+								{items.CHAR}
+								{items.REQUIRES}
+								{items.AFFECTS}
+								{items.PROPERTIES}
+								{items.FEATURES}
+								{items.INBUILD_MAGIC}
+								{items.COMMENT}
+								</td>
+							</tr>
+							<!-- END items -->
+						</table>
+						<table width="100%">
+							<tr>
+								<td align="left">Выровнять по <input type="button" name="dropflowers" value="названию" onclick='window.location="/main.pl?boxsort=name"'> <input type="button" name="dropflowers" value="цене" onclick='window.location="/main.pl?boxsort=cost"'> <input type="button" name="dropflowers" value="типу" onclick='window.location="/main.pl?boxsort=type"'></td>
+								<td align="right"><input type="submit" name="drophlam" value="Выбросить хлам" onclick="return confirm('Выбросить разный хлам типа выписок, квитанций и увядших букетов?')"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<script language="JavaScript">
+myalign=parseFloat('{ALIGN}');
+document.onmousedown=Down;
+function Down()
+{
+	top.CtrlPress=window.event.ctrlKey;
+}
+function w(name,id,align,klan,level,slp,trv,city,att)
+{
+	lev = {LEVEL};
+	opener = '{OPENER}';
+	var s = '';
+	if( klan.length > 0 )
+	{
+		klan = '<img src="http://static.ivacuum.ru/i/klan/'+klan+'.gif" width="24" height="15" border="0" alt="'+klan+'">';
+	}
+	if( lev > 0 )
+	{
+		s += '<a href="javascript:'+opener+'top.AddToPrivate(\''+name+'\',true)"><img src="http://static.ivacuum.ru/i/lock.gif" width="20" height="15" border="0" alt="Приват"></a>';
+	}
+
+	s += '<img src="http://static.ivacuum.ru/i/align'+align+'.gif" width="12" height="15" border="0" alt="">'+klan+'<a href="javascript:top.AddTo(\''+name+'\')">'+name+'</a>['+level+']<a href="/inf.pl?id='+id+'" target=_blank>'+'<img src="http://static.ivacuum.ru/i/inf'+city+'.gif" width="12" height="11" border="0" alt="Инф. о '+name+'"></a>';
+
+	if( slp > 0 )
+	{
+		s += ' <img src="http://static.ivacuum.ru/i/sleep2.gif" width="24" height="15" border="0" alt="Наложено заклятие молчания">';
+	}
+	if( trv > 0 )
+	{
+		s += ' <img src="http://static.ivacuum.ru/i/travma2.gif" width="24" height="15" border="0" alt="Инвалидность">';
+	}
+	if( att > 0 || ( myalign >= 1 && myalign < 2 && align > 3 && align < 4 ) || ( align >= 1 && align < 2 && myalign > 3 && myalign < 4 ) )
+	{
+		s+=' <a target="main" href="/main.pl?attackc='+id+'"><img src="http://static.ivacuum.ru/i/misc/attackbsmall.gif" width=13 height=13></a>';
+	}
+	document.write(s+'<br>');
+}
+</script>
+</head>
+<body marginwidth="0" leftmargin="0" leftmargin="0" marginwidth="0" bgcolor="#faf2f2" onscroll="top.myscroll()" onload="document.body.scrollTop=top.OnlineOldPosition">
+<!-- BEGIN our_room -->
+<center><input type="button" value="Обновить" onclick="location='{U_REFRESH}'"></center>
+<!-- END our_room -->
+<font style="color:#8f0000;font-size:10pt"><b>{ROOM} ({CHARS})</b></font>
+<table border="0">
+	<tr>
+		<td nowrap><script>
+		<!-- BEGIN online -->
+		w('{online.LOGIN}',{online.ID},'{online.ALIGN}','{online.KLAN}','{online.LEVEL}',{online.SLEEP},0,'{online.CITY}', {online.ATTACK});
+		<!-- END online -->
+		</script></td>
+	</tr>
+</table>
+<!-- BEGIN our_room -->
+<script>document.write('<input type="checkbox" onclick="top.OnlineStop=!top.OnlineStop" '+(top.OnlineStop?'':'checked')+'> Обновлять автомат.')</script>
+<!-- END our_room -->
+</body>
+</html>

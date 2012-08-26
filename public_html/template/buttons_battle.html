@@ -1,0 +1,378 @@
+<html>
+<head>
+<title>Бойцовский Клуб</title>
+<link rel="shortcut icon" href="favicon.ico">
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+
+<style id='mst1'>
+.ismagic { background-color: #E0E0E2; }
+</style>
+
+<script language="JavaScript">
+<!--
+var CtrlPress = false;
+var FrameCheck=new Array;
+var firsttimes=5;
+
+totrefcount=0;
+function check_frames() {
+	var i;
+	if (firsttimes) {firsttimes--; return;}
+	for (i=0; i<FrameCheck.length; i++)
+	{
+		try {
+			var l=eval('top.'+FrameCheck[i]+'.location.hostname;');
+   		}
+		catch (e) {
+			totrefcount++;
+			if (totrefcount >= 10) {
+				if (totrefcount == 10) top.location="/";
+				return(0);
+			}
+			top.location=top.location+"";
+			return(1);
+		}
+	}
+	totrefcount=0;
+}
+CheckTimer=setInterval("check_frames()",1000);
+
+function AddToFrameCheck(name)
+{
+	var i;
+	for (i=0; i<FrameCheck.length; i++)
+	{
+		if (FrameCheck[ i ]==name) return;
+	}
+	FrameCheck[ FrameCheck.length ]=name;
+}
+
+function AddTo(login){
+	if (CtrlPress) {
+		login = login.replace('%', '%25');
+		while (login.indexOf('+')>=0) login = login.replace('+', '%2B');
+		while (login.indexOf('#')>=0) login = login.replace('#', '%23');
+		while (login.indexOf('?')>=0) login = login.replace('?', '%3F');
+		window.open('inf.php?login='+login, '_blank')
+	} else {
+		var o = top.frames['main'].Hint3Name;
+		if ((o != null)&&(o != "")) {
+			top.frames['main'].document.all(o).value=login;
+			top.frames['main'].document.all(o).focus();
+		} else {
+			top.frames['bottom'].window.document.F1.text.focus();
+			var txt=top.frames['bottom'].document.forms[0].text.value;
+			var ntxt='to ['+login+'] ';
+
+			var i = txt.indexOf(ntxt);
+			if (i!=-1) {
+				txt = txt.substr(0,i) + 'private ['+login+'] '+ txt.substr(i+ntxt.length, txt.length);
+			} else {
+				var ntxt2='private ['+login+'] ';
+				i = txt.indexOf(ntxt2);
+				if (i!=-1) {
+					txt = txt.substr(0,i) + 'to ['+login+'] '+ txt.substr(i+ntxt2.length, txt.length);
+				} else {
+					txt = ntxt + txt;
+				}
+			}
+
+			top.frames['bottom'].document.forms[0].text.value = txt;
+		}
+	}
+}
+function AddToPrivate(login, nolookCtrl){
+	if (CtrlPress && !nolookCtrl) {
+		login = login.replace('%', '%25');
+		while (login.indexOf('+')>=0) login = login.replace('+', '%2B');
+		while (login.indexOf('#')>=0) login = login.replace('#', '%23');
+		while (login.indexOf('?')>=0) login = login.replace('?', '%3F');
+		window.open('inf.php?login='+login, '_blank')
+	} else {
+		top.frames['bottom'].window.document.F1.text.focus();
+		var s=top.frames['bottom'].document.forms[0].text.value;
+		if (s.indexOf('private ['+login+'] ')==-1) {
+			top.frames['bottom'].document.forms[0].text.value = 'private ['+login+'] ' + top.frames['bottom'].document.forms[0].text.value;
+		}
+	}
+}
+
+function setCookie(name, value) {document.cookie=name+"="+escape(value)+"; path=/";}
+function getCookie(Name) {
+var search = Name + "="
+if (document.cookie.length > 0){
+	offset = document.cookie.indexOf(search)
+	if (offset != -1) {
+		offset += search.length
+		end = document.cookie.indexOf(";", offset)
+		if (end == -1) end = document.cookie.length
+		return unescape(document.cookie.substring(offset, end))
+	}
+}}
+
+var rnd = Math.random();
+
+//--Смена HP
+var delay = 18;
+var redHP = 0.33;
+var yellowHP = 0.66;
+var TimerOn = -1;
+var tkHP, maxHP;
+var speed = 100;
+var mspeed = 100;
+
+function setHP(value, max, newspeed)
+{
+	tkHP = value;
+	maxHP = max;
+
+	if( TimerOn >= 0 )
+	{
+		clearTimeout(TimerOn);
+		TimerOn=-1;
+	}
+	speed = newspeed / 10;
+	setHPlocal();
+}
+function setHPlocal()
+{
+	if( tkHP > maxHP )
+	{
+		tkHP = maxHP;
+	}
+	var le = Math.round(tkHP)+"/"+maxHP;
+	le = 240 - (le.length + 2) * 7;
+	var sz1 = Math.round(((le-1)/maxHP)*tkHP);
+	var sz2 = le - sz1;
+	
+	if( top.frames['main'].document.all("HP") )
+	{
+		top.frames['main'].document.HP1.width = sz1;
+		top.frames['main'].document.HP2.width = sz2;
+
+		if( tkHP / maxHP < redHP )
+		{
+			top.frames['main'].document.HP1.src = 'http://static.ivacuum.ru/i/misc/bk_life_red.gif';
+		}
+		else
+		{
+			if( tkHP/maxHP < yellowHP )
+			{
+				top.frames['main'].document.HP1.src = 'http://static.ivacuum.ru/i/misc/bk_life_yellow.gif';
+			}
+			else
+			{
+				top.frames['main'].document.HP1.src = 'http://static.ivacuum.ru/i/misc/bk_life_green.gif';
+			}
+		}
+		var s = top.frames['main'].document.all("HP").innerHTML;
+		top.frames['main'].document.all("HP").innerHTML = s.substring(0, s.lastIndexOf(':')+1) + Math.round(tkHP)+"/"+maxHP;
+	}
+	tkHP = (tkHP+(maxHP/100)*speed/1000);
+
+	if( tkHP < maxHP )
+	{
+		TimerOn = setTimeout('setHPlocal()', delay*10);
+	}
+	else
+	{
+		TimerOn=-1;
+	}
+}
+
+//-- Смена маны
+var Mdelay = 86;
+var MTimerOn = -1;
+var tkMana, maxMana;
+
+function setMana(value, max, newspeed)
+{
+	tkMana = value;
+	maxMana = max;
+
+	if( MTimerOn >= 0 )
+	{
+		clearTimeout(MTimerOn);
+		MTimerOn = -1;
+	}
+
+	mspeed = newspeed;
+	setManalocal();
+}
+function setManalocal()
+{
+	if( maxMana == 0 ) return(0);
+
+	if( tkMana > maxMana )
+	{
+		tkMana = maxMana;
+	}
+
+	var le = Math.round(tkMana)+"/"+maxMana;
+	le = 240 - (le.length + 2) * 7;
+	var sz1 = Math.round(((le-1)/maxMana)*tkMana);
+	var sz2 = le - sz1;
+
+	if( top.frames['main'].document.all("Mana") )
+	{
+		top.frames['main'].document.Mana1.width = sz1;
+		top.frames['main'].document.Mana2.width = sz2;
+		top.frames['main'].document.Mana1.src = 'http://static.ivacuum.ru/i/misc/bk_life_beg_33.gif';
+		var s = top.frames['main'].document.all("Mana").innerHTML;
+		top.frames['main'].document.all("Mana").innerHTML = s.substring(0, s.lastIndexOf(':')+1) + Math.round(tkMana)+"/"+maxMana;
+	}
+
+	tkMana = (tkMana+(maxMana/1000)*mspeed/100);
+
+	if( tkMana < maxMana )
+	{
+		MTimerOn = setTimeout('setManalocal()', Mdelay*100);
+	}
+	else
+	{
+		MTimerOn=-1;
+	}
+}
+
+var ChatTimerID = -1;
+var ChatDelay = 15;
+var ChatNormDelay = 15;
+var ChatSlowDelay = 60;
+var ChatOm = false;
+var ChatSys = false;
+var SoundSys = false;
+var ChatSlow = false;
+var ChatTranslit = false;
+var lid = 0;
+function RefreshChat()
+{	var s = '&lid='+lid;
+	if (ChatOm) { s=s+'&om=1'; }
+	if (ChatSys) { s=s+'&sys=1'; }
+	if (ChatTimerID>=0) { clearTimeout(ChatTimerID); }
+	ChatTimerID = setTimeout('RefreshChat()', ChatDelay*1000);
+	top.frames['refreshed'].location='{U_CH_REFRESH}'+s;
+}
+
+function StopRefreshChat(){
+	if (ChatTimerID>=0) {clearTimeout(ChatTimerID); }
+	ChatTimerID = -1;
+}
+
+function NextRefreshChat(){
+	if (ChatTimerID>=0) {clearTimeout(ChatTimerID); }
+	ChatTimerID = setTimeout('RefreshChat()', ChatDelay*1000);
+}
+
+function srld(){top.frames['chat'].window.scrollBy(0, 65000);}
+
+function slid(newlid)
+{	var o = top.frames['bottom'].F1;
+	if (o) {lid=newlid;o.lid.value=newlid;}
+}
+
+var OnlineDelay = 12;
+var OnlineTimerOn = -1;
+var OnlineOldPosition = 0;
+var OnlineStop = true;
+function rld(now) {
+	if (OnlineTimerOn < 0 || now) {
+		var tm = now ? 2000 : OnlineDelay*1000;
+		OnlineTimerOn = setTimeout('onlineReload('+now+')', tm);
+	}
+}
+function onlineReload(now) {
+	if (OnlineTimerOn >= 0) clearTimeout(OnlineTimerOn);
+	OnlineTimerOn = -1;
+	if (! OnlineStop || now) { top.frames['online'].navigate('{U_CH_ONLINE}');  }
+}
+
+var ChatClearTimerID = -1;
+var ChatClearDelay = 900;
+var ChatClearSize = 32000;
+function RefreshClearChat(){
+	if (ChatClearTimerID>=0) { clearTimeout(ChatClearTimerID); }
+	ChatClearTimerID = setTimeout('RefreshClearChat()', ChatClearDelay*1000);
+	var s = top.frames['chat'].document.all("mes").innerHTML;
+	if (s.length > ChatClearSize) {
+		var j = s.lastIndexOf('<BR>', s.length-ChatClearSize);
+		top.frames['chat'].document.all("mes").innerHTML = s.substring(j, s.length);
+	}
+}
+
+function ClrChatUser(name) {
+	var s = top.frames['chat'].document.all("mes").innerHTML;
+	if (s.length) {
+		var r="";
+		var change=0;
+		s=s.split('<br>');
+		for (i=0; i<s.length; i++) {
+			if (s[i].indexOf('[<span>'+name+'</span>]')==-1) {
+				r+=s[i]+"<br>";
+			} else {
+				change++;
+			}
+		}
+		if (change > 0) {top.frames['chat'].document.all("mes").innerHTML=r;}
+	}
+}
+
+var oldlocation = '';
+function cht(nm){
+	if (oldlocation == '') {
+		oldlocation = top.frames['main'].location.href;
+		var i = oldlocation.indexOf('?', 0);
+		if (i>0) { oldlocation=oldlocation.substring(0, i) }
+	}
+	top.frames['main'].navigate(nm);
+}
+function returned(){
+	if (oldlocation != '') { top.frames['main'].navigate(oldlocation); oldlocation=''; }
+	else { top.frames['main'].navigate('/main.pl') }
+}
+function myscroll(){
+	OnlineOldPosition = top.frames['online'].document.body.scrollTop;
+}
+function CLR1(){
+	top.frames["bottom"].document.F1.text.value='';
+	top.frames["bottom"].document.F1.text.focus();
+}
+function CLR2(){
+	top.frames['chat'].document.all('mes').innerHTML='';
+	top.frames['chat'].document.all('oMenu').style.top="0px";
+}
+function strt(){
+	ChatTimerID = setTimeout('RefreshChat()', 1000);
+	OnlineTimerOn = setTimeout('onlineReload(true)', 2*1000);
+	ChatClearTimerID = setTimeout('RefreshClearChat()', ChatClearDelay*1000);
+}
+
+if(document.all && document.all.item && !window.opera && !document.layers)
+{
+	document.write(
+		'<frameset rows="73, *, 30, 5" frameborder="0" border="0" framespacing="0">'+
+		'<frame src="/buttons.pl?header=1" target="_top" scrolling=no noresize frameborder="0" border="0" framespacing="0" marginwidth="0" marginheight="0">'+
+		'<frameset cols="9, *, 9" frameborder="0" border="0" framespacing="0">'+
+			'<frame src="/frames/left.html" target="_top" scrolling=no noresize frameborder="0" border="0" framespacing="0" marginwidth="0" marginheight="0">'+
+			'<frameset rows="70%, *, 0" frameborder="0" border="0" framspacing="0">'+
+				'<frame name="main" src="/main.pl" onload="AddToFrameCheck(\'main\')" style="border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #B0B0B0">'+
+				'<frameset cols="*,270">'+
+					'<frame name="chat" src="/buttons.pl?ch=1" target="_top" scrolling=yes FRAMEBORDER="0" BORDER="0" FRAMESPACING="0" MARGINWIDTH="3" MARGINHEIGHT="3" onload="AddToFrameCheck(\'chat\')">'+
+					'<frame name="online" src="/ch-online.html" target="_blank" scrolling=YES FRAMEBORDER=0 BORDER=0 FRAMESPACING=0 MARGINWIDTH=3 MARGINHEIGHT=0 onload="AddToFrameCheck(\'online\')">'+
+				'</frameset>'+
+				'<frame name="refreshed" target="_top" scrolling="no" noresize src="/refreshed.html" onload="AddToFrameCheck(\'refreshed\')">'+
+			'</frameset>'+
+			'<frame src="/frames/right.html" target="_top" scrolling=NO NORESIZE FRAMEBORDER="0" BORDER="0" FRAMESPACING="0" MARGINWIDTH="0" MARGINHEIGHT="0">'+
+		'</frameset>'+
+		'<frame name="bottom" scrolling="no" noresize src="/buttons.pl" onload="AddToFrameCheck(\'bottom\')">'+
+		'<frame src="/frames/bottom.html" target="_top" scrolling=NO NORESIZE FRAMEBORDER="0" BORDER="0" FRAMESPACING="0" MARGINWIDTH="0" MARGINHEIGHT="0">'+
+	'</frameset>');
+}
+else
+{
+	alert('Вы должны использовать Internet Explorer 4.0 или выше');
+	history.back(-1);
+}
+//-->
+</script>
+</head>
+</html>

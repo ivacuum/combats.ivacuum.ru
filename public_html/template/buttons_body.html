@@ -1,0 +1,188 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script language="JavaScript" type="text/javascript">
+var map_en = new Array('s`h','S`h','S`H','s`Х','sh`','Sh`','SH`',"'o",'yo',"'O",'Yo','YO','zh','w','Zh','ZH','W','ch','Ch','CH','sh','Sh','SH','e`','E`',"'u",'yu',"'U",'Yu',"YU","'a",'ya',"'A",'Ya','YA','a','A','b','B','v','V','g','G','d','D','e','E','z','Z','i','I','j','J','k','K','l','L','m','M','n','N','o','O','p','P','r','R','s','S','t','T','u','U','f','F','h','H','c','C','`','y','Y',"'")
+var map_ru = new Array('сх','Сх','СХ','сХ','щ','Щ','Щ','ё','ё','Ё','Ё','Ё','ж','ж','Ж','Ж','Ж','ч','Ч','Ч','ш','Ш','Ш','э','Э','ю','ю','Ю','Ю','Ю','я','я','Я','Я','Я','а','А','б','Б','в','В','г','Г','д','Д','е','Е','з','З','и','И','й','Й','к','К','л','Л','м','М','н','Н','о','О','п','П','р','Р','с','С','т','Т','у','У','ф','Ф','х','Х','ц','Ц','ъ','ы','Ы','ь')
+
+function convert(str)
+{	for(var i=0;i<map_en.length;++i) while(str.indexOf(map_en[i])>=0) str = str.replace(map_en[i],map_ru[i]);
+	return str;
+}
+function translate() {
+	var strarr = new Array();
+	strarr = document.F1.text.value.split(' ');
+	for(var k=0;k<strarr.length;k++) {
+		if(strarr[k].indexOf("http://") < 0 && strarr[k].indexOf('@') < 0 && strarr[k].indexOf("www.") < 0 && !(strarr[k].charAt(0)==":" && strarr[k].charAt(strarr[k].length-1)==":")) {
+			if ((k<strarr.length-1)&&(strarr[k]=="to" || strarr[k]=="private")&&(strarr[k+1].charAt(0)=="[")) {
+				while ( (k<strarr.length-1) && (strarr[k].charAt(strarr[k].length-1)!="]") ) k++;
+			} else { strarr[k] = convert(strarr[k]) }
+		}
+	}
+	document.F1.text.value = strarr.join(' ');
+}
+
+function sw_translit()
+{
+   top.ChatTranslit = ! top.ChatTranslit;
+   if (top.ChatTranslit) {
+       document.all('b___translit').src = b___translit_on.src;
+	   document.all('b___translit').alt = b___translit_on.alt;
+   } else {
+       document.all('b___translit').src = b___translit_off.src;
+	   document.all('b___translit').alt = b___translit_off.alt;
+   }
+}
+
+function sw_filter()
+{
+   top.ChatOm = ! top.ChatOm;
+   if (top.ChatOm) {
+       document.all('b___filter').src = b___filter_on.src;
+	   document.all('b___filter').alt = b___filter_on.alt;
+	   document.F1.om.value = '1';
+   } else {
+       document.all('b___filter').src = b___filter_off.src;
+	   document.all('b___filter').alt = b___filter_off.alt;
+	   document.F1.om.value = '';
+   }
+}
+
+function sw_sys()
+{
+   top.ChatSys = ! top.ChatSys;
+   if (top.ChatSys) {
+       document.all('b___sys').src = b___sys_on.src;
+	   document.all('b___sys').alt = b___sys_on.alt;
+	   document.F1.sys.value = '1';
+   } else {
+       document.all('b___sys').src = b___sys_off.src;
+	   document.all('b___sys').alt = b___sys_off.alt;
+	   document.F1.sys.value = '';
+   }
+}
+
+var soundvol = 0;
+function sw_sound() {
+   if (soundvol==2 || soundvol==0) {top.SoundSys = ! top.SoundSys;}
+   if (top.SoundSys) {
+       soundvol++;
+	   if (soundvol==1) {
+	   		document.all('b___sound').src = b___sound_on.src;
+	   		document.all('b___sound').alt = b___sound_on.alt;
+	   } else if (soundvol==2) {
+	   		document.all('b___sound').src = b___sound_on2.src;
+	   		document.all('b___sound').alt = b___sound_on2.alt;
+	   }
+	   document.F1.sound.value = '1';
+   } else {
+       document.all('b___sound').src = b___sound_off.src;
+	   document.all('b___sound').alt = b___sound_off.alt;
+	   document.F1.sound.value = '';
+	   soundvol=0;
+   }
+}
+
+function sw_slow()
+{
+   if (top.ChatSlow) {
+     if (top.ChatTimerID >= 0) {
+	     top.StopRefreshChat();
+         document.all('b___slow').src = b___chat_off.src; document.all('b___slow').alt = b___chat_off.alt;
+	 } else {
+	     top.ChatSlow = false;
+	     top.ChatDelay=top.ChatNormDelay;
+		 top.RefreshChat();
+         document.all('b___slow').src = b___slow_off.src; document.all('b___slow').alt = b___slow_off.alt;
+	 }
+   } else {
+     top.ChatSlow = true;
+     document.all('b___slow').src = b___slow_on.src; document.all('b___slow').alt = b___slow_on.alt;
+	 top.ChatDelay=top.ChatSlowDelay;
+	 top.RefreshChat();
+   }
+}
+
+function subm()
+{
+	if (top.ChatTranslit) translate()
+}
+
+var b___translit_on = new Image; b___translit_on.src="http://static.ivacuum.ru/i/b___translit_on.gif"; b___translit_on.alt="(включено) Преобразовывать транслит в русский текст";
+var b___translit_off = new Image; b___translit_off.src="http://static.ivacuum.ru/i/b___translit_off.gif"; b___translit_off.alt="(выключено) Преобразовывать транслит в русский текст";
+var b___filter_on = new Image; b___filter_on.src="http://static.ivacuum.ru/i/b___filter_on.gif"; b___filter_on.alt="(включено) Показывать в чате только сообщения адресованные мне";
+var b___filter_off = new Image; b___filter_off.src="http://static.ivacuum.ru/i/b___filter_off.gif"; b___filter_off.alt="(выключено) Показывать в чате только сообщения адресованные мне";
+var b___sys_on = new Image; b___sys_on.src="http://static.ivacuum.ru/i/b___sys_on.gif"; b___sys_on.alt="(включено) Показывать в чате системные сообщения";
+var b___sys_off = new Image; b___sys_off.src="http://static.ivacuum.ru/i/b___sys_off.gif"; b___sys_off.alt="(выключено) Показывать в чате системные сообщения";
+var b___slow_on = new Image; b___slow_on.src="http://static.ivacuum.ru/i/b___slow_on.gif"; b___slow_on.alt="(включено) Медленное обновление чата (раз в минуту)";
+var b___slow_off = new Image; b___slow_off.src="http://static.ivacuum.ru/i/b___slow_off.gif"; b___slow_off.alt="(выключено) Медленное обновление чата (раз в минуту)";
+var b___sound_on = new Image; b___sound_on.src="http://static.ivacuum.ru/i/move/b___sound_on.gif"; b___sound_on.alt="(включено 'тихо') Звуковые уведомления";
+var b___sound_on2 = new Image; b___sound_on2.src="http://static.ivacuum.ru/i/move/b___sound_on2.gif"; b___sound_on2.alt="(включено 'громко') Звуковые уведомления";
+var b___sound_off = new Image; b___sound_off.src="http://static.ivacuum.ru/i/move/b___sound_off.gif"; b___sound_off.alt="(выключено) Звуковые уведомления";
+var b___chat_off = new Image; b___chat_off.src="http://static.ivacuum.ru/i/b___chat_off.gif"; b___chat_off.alt="Обновление чата выключено!";
+
+function smiles()
+{
+   var x = event.screenX - 180;
+   var y = event.screenY - 390;
+   var sFeatures = 'dialogLeft:'+x+'px;dialogTop:'+y+'px;dialogHeight:400px;dialogWidth:365px;help:no;status:no;unadorned:yes';
+   window.showModelessDialog("smiles.html", window, sFeatures);
+}
+function rslength()
+{
+	var size = document.body.clientWidth-({BUTTONS}*30)-31-59-256-18-30-30;
+	if (size<100) { size=100 }
+	document.F1.text.width = size;
+	document.all('T2').width = size;
+}
+window.onresize=rslength;
+
+function clearc()
+{
+	if (document.F1.text.value == '') {
+		if (confirm('Очистить окно чата?')) top.frames['chat'].document.all('mes').innerHTML='';
+	} else { document.F1.text.value=''; }
+	document.F1.text.focus();
+}
+</script>
+
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" bgcolor="#E6E6E6" onload="rslength()" onfocus="document.forms[0].text.focus()">
+
+<form action="/ch.pl" target="refreshed" method="get" name="F1" onsubmit="subm();top.NextRefreshChat();">
+<input type="hidden" name="color" value="000000">
+<input type="hidden" name="sys" value="">
+<input type="hidden" name="om" value="">
+<input type="hidden" name="lid" value="">
+<input type="hidden" name="sound" value="">
+
+<table width="100%" height="30" cellspacing="0" cellpadding="0">
+	<tr valign="top" style="background-image:url(http://static.ivacuum.ru/i/move/beg_chat_03.gif); background-position: top; background-repeat:repeat-x;">
+		<td width="9"><img src="http://static.ivacuum.ru/i/move/bkf_l_r1_02.gif" width="9" height="30"></td>
+		<td width="30"><img src="http://static.ivacuum.ru/i/move/b___.gif" width="30" height="30" alt="Чат" /></td>
+		<td valign="middle" id="T2"><input type="text" name="text" maxlength="240" size="80" onkeyup="if((event.ctrlKey) && ((event.keyCode==10)||(event.keyCode==13))) { document.F1.sbm.click() }" /></td>
+		<td id="T3"><img src="http://static.ivacuum.ru/i/move/b___ok.gif" width="30" height="30" alt="Добавить текст в чат" style="cursor: hand" onclick="document.F1.sbm.click();" /><img src="http://static.ivacuum.ru/i/1x1.gif" width="8" height="1" alt="" /><img src="http://static.ivacuum.ru/i/move/b___clear.gif" width="30" height="30" alt="Очистить строку ввода/чат" style="cursor: hand" onclick="clearc()" /><img src="http://static.ivacuum.ru/i/move/b___filter_off.gif" alt="(выключено) Показывать в чате только сообщения адресованные мне" name="b___filter" width="30" height="30" id="b___filter" style="cursor: hand" onclick="sw_filter();" /><img src="http://static.ivacuum.ru/i/move/b___sys_off.gif" alt="(выключено) Показывать в чате системные сообщения" name="b___sys" width="30" height="30" id="b___sys" style="cursor: hand" onclick="sw_sys();" /><img src="http://static.ivacuum.ru/i/move/b___slow_off.gif" alt="(выключено) Медленное обновление чата (раз в минуту)" name="b___slow" width="30" height="30" id="b___slow" style="cursor: hand" onclick="sw_slow();" /><img src="http://static.ivacuum.ru/i/move/b___translit_off.gif" alt="(выключено) Преобразовывать транслит в русский текст (правила перевода см. в энциклопедии)" name="b___translit" width="30" height="30" id="b___translit" style="cursor: hand" onclick="sw_translit();" /><img src="http://static.ivacuum.ru/i/move/b___sound_off.gif" alt="(выключено) Звуковые уведомления" name="b___sound" width="30" height="30" id="b___sound" style="cursor: hand" onclick="sw_sound();" /><img src="http://static.ivacuum.ru/i/1x1.gif" width="8" height="1" alt="" />
+		<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="1" height="1" id="Sound" align="middle">
+			<param name="allowScriptAccess" value="always">
+			<param name="movie" value="http://static.ivacuum.ru/i/flash/Sound2.swf">
+			<param name="quality" value="high">
+			<param name="scale" value="noscale">
+			<param name="wmode" value="transparent">
+			<embed src="http://static.ivacuum.ru/i/flash/Sound2.swf" quality="high" scale="noscale" wmode="transparent" width="1" height="1" name="Sound" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+		</object><img src="http://static.ivacuum.ru/i/move/b___smile.gif" width="30" height="30" alt="Смайлики" style="cursor:hand" onclick="smiles()" /></td>
+		<td width="19" id="T4" background="http://static.ivacuum.ru/i/b___bg2.gif"><img src="http://static.ivacuum.ru/i/move/beg_chat_05.gif" width="19" height="30" alt="" /></td>
+		<td align="right" nowrap="nowrap" id="T5" align="right" background="http://static.ivacuum.ru/i/b___bg2.gif" bgcolor="#BAB7B3"><img src="http://static.ivacuum.ru/i/a___inv.gif" width="30" height="30" alt="Настройки/Инвентарь" style="cursor:hand" onclick="top.cht('/main.pl?edit=')">{BTN}<img src="http://static.ivacuum.ru/i/a___ext.gif" width="30" height="30" alt="Выход из игры" style="cursor:hand" onclick="if (confirm('Выйти из игры?')) top.window.navigate('/enter.pl?mode=logout')"></td>
+		<td background="http://static.ivacuum.ru/i/b___bg2.gif" bgcolor="#BAB7B3" id="T6" width="70" valign="middle"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="70" height="26"><param name="movie" value="{F_VALUE}"><param name="quality" value="high"></object></td>
+		<td width="9" valign="middle" background="http://static.ivacuum.ru/i/b___bg2.gif" bgcolor="BAB7B3"><img src="http://static.ivacuum.ru/i/move/bkf_l_r1_06.gif" width="9" height="30"></td>
+	</tr>
+</table>
+<script language="JavaScript" type="text/javascript">
+var user = top.getCookie("ChatColor");
+if ((user != null)&&(user != "")) document.F1.color.value = user;
+document.F1.text.focus();
+</script>
+<input type="submit" name="sbm" style="display:none" />
+</form>
+</body>
+</html>

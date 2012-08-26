@@ -1,0 +1,529 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://static.ivacuum.ru/i/main.css" type="text/css">
+<link rel="stylesheet" href="http://static.ivacuum.ru/i/move/design3.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+{META}
+<script language="JavaScript" src="http://static.ivacuum.ru/i/sl2.21.js"></script>
+<script language="JavaScript" src="http://static.ivacuum.ru/i/ch2.81.js"></script>
+<script src="http://static.ivacuum.ru/i/commoninf.js"></script>
+<script language="JavaScript">
+function dv()
+{
+	document.write('<table cellspacing="1" width="100%"><td height="1" bgcolor="#b0b0b0"></table>');
+}
+
+function fastshow(content)
+{
+	var el = document.getElementById("mmoves");
+	var o = window.event.srcElement;
+
+	if( content != '' && el.style.visibility != "visible" )
+	{
+		el.innerHTML = '<small>'+content+'</small>';
+	}
+
+	var x = window.event.clientX + document.documentElement.scrollLeft + document.body.scrollLeft + 3;
+	var y = window.event.clientY + document.documentElement.scrollTop + document.body.scrollTop+5;
+	el.style.left = x + "px";
+	el.style.top  = y + "px";
+
+	if( el.style.visibility != "visible" )
+	{
+		el.style.visibility = "visible";
+	}
+}
+
+function hideshow()
+{
+	document.getElementById("mmoves").style.visibility = 'hidden';
+}
+
+var Blocks=new Array("", "Голова", "Грудь", "Живот", "Пояс", "Ноги");
+
+function adh(a,d)
+{
+	var s, s1;
+
+	s1 = '';
+
+	if( a > 0 )
+	{
+		s1 = "Атака: "+Blocks[a]+"<br>";
+	}
+
+	var dd = ""+d;
+	dd = dd.split('');
+	s = '';
+
+	for( i = 0; i < dd.length; i++ )
+	{
+		if(s)
+		{
+			if( i == dd.length - 1 )
+			{
+				s += " и ";
+			}
+			else
+			{
+				s+=", ";
+			}
+		}
+
+		s += Blocks[parseInt(dd[i])];
+	}
+
+	s = s1 + "Защита: " + s;
+
+	document.write("<span style='' onmouseover='fastshow(\""+s+"\"); this.style.textDecoration=\"underline\"' onmouseout='hideshow(); this.style.textDecoration=\"\"'>");
+}
+
+var attack = new Array();
+var nattack = 0;
+var defend = false;
+var enemy = '';
+var myid = '1111606539';
+
+function check()
+{
+	if( nattack < parseInt('{ATTACKS}') )
+	{
+		errmess('Удар не выбран.');
+		return false;
+	}
+
+	if( !defend )
+	{
+		errmess('Блок не выбран.');
+		return false;
+	}
+	
+	return true;
+}
+
+function Prv(logins)
+{
+	top.frames['bottom'].window.document.F1.text.focus();
+	top.frames['bottom'].document.forms[0].text.value = logins + top.frames['bottom'].document.forms[0].text.value;
+}
+
+function setattack(i, j)
+{
+	if( !attack[j] )
+	{
+		nattack++;
+		attack[j] = i;
+	}
+}
+
+function setdefend(i)
+{
+	defend = i;
+}
+</script>
+
+<style type="text/css">
+.menu {
+  background-color: #d2d0d0;
+  border-color: #ffffff #626060 #626060 #ffffff;
+  border-style: solid;
+  border-width: 1px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  visibility: hidden;
+}
+
+a.menuItem {
+  border: 0px solid #000000;
+  color: #003388;
+  display: block;
+  font-family: MS Sans Serif, Arial, Tahoma,sans-serif;
+  font-size: 8pt;
+  font-weight: bold;
+  padding: 2px 12px 2px 8px;
+  text-decoration: none;
+}
+
+a.menuItem:hover {
+  background-color: #a2a2a2;
+  color: #0066FF;
+}
+span {
+  font-size: 10pt;
+  font-family: Verdana, Arial, Helvetica, Tahoma, sans-serif;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: hand;
+}
+</style>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="e2e0e0">
+<div id="mmoves" style="background-color: #FFFFCC; visibility: hidden; overflow: visible; position: absolute; border-color: #666666; border-style: solid; border-width: 1px; padding: 2px; white-space: nowrap;"></div>
+<div id="hint4" class="ahint"></div>
+<table width="100%" cellspacing="4" cellpadding="0">
+<form action="battle.php" method="post" name="f1">
+	<tr valign="top">
+		<td>
+			<table cellspacing="1" cellpadding="0" width="100%">
+				<tr valign="top">
+					<td align="center" colspan="2"><a href="JavaScript:top.AddToPrivate('{LOGIN}', true)"><img src="http://static.ivacuum.ru/i/lock3.gif" width="20" height="15" alt="Приват"></a>{DRWFL}</td>
+				</tr>
+				<tr>
+					<td>
+						<table cellspacing="0" cellpadding="0" width="250">
+							<tr>
+								<td>
+									<table cellspacing="0" cellpadding="0" class="posit">
+										<tr>
+											<td style="font-size: 10px">{HP_STRING}<br />{MANA_STRING}</td>
+										</tr>
+										{SCRIPT_SETHP}
+										<!-- BEGIN scrolls -->
+										<tr>
+											<td>
+												<table cellspacing="0" cellpadding="0">
+													<tr>
+														<td>{I_SCROLL1}</td>
+														<td>{I_SCROLL2}</td>
+														<td>{I_SCROLL3}</td>
+														<td>{I_SCROLL4}</td>
+														<td>{I_SCROLL5}</td>
+														<td><img alt="" height="25" src="http://static.ivacuum.ru/i/items/w109.gif" width="40"></td>
+													</tr>
+												</table>
+												<table cellspacing="0" cellpadding="0">
+													<tr>
+														<td>{I_SCROLL6}</td>
+														<td>{I_SCROLL7}</td>
+														<td>{I_SCROLL8}</td>
+														<td>{I_SCROLL9}</td>
+														<td>{I_SCROLL10}</td>
+														<td><img alt="" height="25" src="http://static.ivacuum.ru/i/items/w109.gif" width="40"></td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<!-- END scrolls -->
+										<tr>
+											<td>
+												<table cellspacing="0" cellpadding="0">
+													<tr valign="top">
+														<td>
+															<table cellspacing="0" cellpadding="0" width="100%">
+																<tr>
+																	<td>{I_HELMET}</td>
+																</tr>
+																<tr>
+																	<td>{I_WEAPON}</td>
+																</tr>
+																<tr>
+																	<td>{I_ARMOR}</td>
+																</tr>
+																<tr>
+																	<td>{I_BELT}</td>
+																</tr>
+															</table>
+														</td>
+														<td>
+															<table cellspacing="0" cellpadding="0" width="100%">
+																<tr>
+																	<td align="center" valign="top"><img alt="{LOGIN}" height="220" src="http://static.ivacuum.ru/i/chars/0/{OBRAZ}.gif" width="120"></td>
+																</tr>
+																<tr>
+																	<td>
+																		<table cellspacing="0" cellpadding="0" width="100%">
+																			<tr>
+																				<td>{I_R_KARMAN}</td>
+																				<td><img alt="Пустой слот левый карман" height="20" src="http://static.ivacuum.ru/i/items/w14.gif" width="40"></td>
+																				<td>{I_L_KARMAN}</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+														<td>
+															<table cellspacing="0" cellpadding="0" width="100%">
+																<tr>
+																	<td>{I_CLIP}</td>
+																</tr>
+																<tr>
+																	<td>{I_AMULET}</td>
+																</tr>
+																<tr>
+																	<td>{I_BRASLET}</td>
+																</tr>
+																<tr>
+																	<td>{I_GLOVES}</td>
+																</tr>
+																<tr>
+																	<td>{I_RING1}{I_RING2}{I_RING3}</td>
+																</tr>
+																<tr>
+																	<td>{I_SHIELD}</td>
+																</tr>
+																<tr>
+																	<td>{I_BOOTS}</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<!-- BEGIN specials -->
+									<table cellpadding="0" cellspacing="0" width="100%">
+										<tr>
+											<td width="20%"><small><img height="8" src="http://static.ivacuum.ru/i/misc/micro/hit.gif" width="8"> {COUNT_HIT}</small></td>
+											<td width="20%"><small><img height="8" src="http://static.ivacuum.ru/i/misc/micro/krit.gif" width="7"> {COUNT_CRITICAL_HIT}</small></td>
+											<td width="20%"><small><img height="8" src="http://static.ivacuum.ru/i/misc/micro/counter.gif" width="8"> {COUNT_COUNTERBLOW}</small></td>
+											<td width="20%"><small><img height="8" src="http://static.ivacuum.ru/i/misc/micro/block.gif" width="8"> {COUNT_BLOCK}</small></td>
+											<td width="20%"><small><img height="8" src="http://static.ivacuum.ru/i/misc/micro/parry.gif" width="8"> {COUNT_PARRY}</small></td>
+										</tr>
+										<tr>
+											<td>{HIT_STRONG}</td>
+											<td>{KRIT_WILDLUCK}</td>
+											<td>{COUNTER_WINDDANCE}</td>
+											<td>{BLOCK_ACTIVESHIELD}</td>
+											<td>{PARRY_PREDICTION}</td>
+										</tr>
+										<tr>
+											<td colspan="5" height="3"><span></span></td>
+										</tr>
+										<tr>
+											<td>{HIT_LUCK}</td>
+											<td>{KRIT_BLINDLUCK}</td>
+											<td>{COUNTER_BLADEDANCE}</td>
+											<td>{BLOCK_FULLSHIELD}</td>
+											<td>{PARRY_SECONDLIFE}</td>
+										</tr>
+									</table>
+								<small><br /></small>
+								<!-- END specials -->
+								Сила: {STRENGTH}<br>
+								Ловкость: {AGILITY}<br>
+								Интуиция: {PERCEPTION}<br>
+								Выносливость: {VITALITY}<br>
+								{INTELLECT}
+								{WISDOM}
+								{SPIRITUALITY}
+								{FREEDOM}
+								{FREEDOM_OF_SPIRIT}
+								{HOLINESS}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" width="100%"><span id="messid">{MESSAGE}</span>
+		<!-- BEGIN fight -->
+			<table cellspacing="0" cellpadding="0" width="100%">
+				<tr>
+					<td colspan="2"><h3>Поединок</td>
+				</tr>
+				<tr>
+					<td><font color="#660000"><b>Ваш ход</b></td>
+					<td align="right"><input onclick='window.location="/battle.pl"' type="button" value="Обновить">&nbsp;<!--<input type="submit" value="Сменить противника (4)" name="skip">-->&nbsp;</td>
+				</tr>
+			</table>
+			<center>
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="center" valign="bottom"><div style='background-color: f2f0f0'><b>Атака</b></div></td>
+					<td>&nbsp;</td>
+					<td align="center" valign="bottom"><div style='background-color: f2f0f0'><b>Защита</b></div></td>
+				</tr>
+				<tr>
+					<td>
+						<table cellspacing="0" cellpadding="0">
+						<script language="JavaScript">
+						var zones = new Array('в голову', 'в грудь', 'в живот', 'в пояс(пах)', 'по ногам');
+						attacks = parseInt('{ATTACKS}');
+
+						for( i = 1; i <= 5; i++ )
+						{
+							s = '<tr><td>';
+
+							for( j = 0; j < attacks; j++ )
+							{
+								s+='<input type="radio" name="attack'+j+'" value="'+i+'" onclick="setattack('+i+','+j+')">';
+							}
+
+							s += 'удар '+zones[i-1]+'</td></tr>';
+
+							document.write(s);
+						}
+						</script>
+						</table>
+					</td>
+					<td>&nbsp;</td>
+					<td>
+						<table cellspacing="0" cellpadding="0">
+							<tr>
+								<td><input type="radio" id="B1" name="defend" value="1" onclick="setdefend(1)"><label for="B1">блок {BLOCK1}</label></td>
+							</tr>
+							<tr>
+								<td><input type="radio" id="B2" name="defend" value="2" onclick="setdefend(2)"><label for="B2">блок {BLOCK2}</label></td>
+							</tr>
+							<tr>
+								<td><input type="radio" id="B3" name="defend" value="3" onclick="setdefend(3)"><label for="B3">блок {BLOCK3}</label></td>
+							</tr>
+							<tr>
+								<td><input type="radio" id="B4" name="defend" value="4" onclick="setdefend(4)"><label for="B4">блок {BLOCK4}</label></td>
+							</tr>
+							<tr>
+								<td><input type="radio" id="B5" name="defend" value="5" onclick="setdefend(5)"><label for="B5">блок {BLOCK5}</label></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center" bgcolor="f2f0f0"><input name="go" type="submit" value="Вперед !!!" onclick="return check()"></td>
+				</tr>
+			</table>
+			</center>
+			<!-- END fight -->
+			<!-- BEGIN fight_is_over -->
+			{GAINED_EXP}
+			<center><input type="submit" value="Вернуться" name="gameover"></center>
+			<!-- END fight_is_over -->
+			<!-- BEGIN death -->
+			<font color="red">Для вас бой окончен. Ожидаем пока закончат и другие игроки...</font>
+			<center><input onclick='window.location="/battle.pl"' type="button" value="Обновить"></center>
+			<!-- END death -->
+			<hr>
+			{TEAMS_LIST}
+			{LOG_TEXT}
+			{CUT_LOG}
+			{TIMEOUT}
+			{HIT_HP}
+			<br>
+		</td>
+		<td align="right" valign="top">
+		<!-- BEGIN fight -->
+			<table cellspacing="1" cellpadding="1">
+				<tr valign="top">
+					<td align="center" colspan="2"><a href="JavaScript:top.AddToPrivate('{PL2_LOGIN}', true)"><img src="http://static.ivacuum.ru/i/lock3.gif" width="20" height="15" alt="Приват"></a>{PL2_DRWFL}</td>
+				</tr>
+				<tr valign="top">
+					<td>
+						<table cellspacing="0" cellpadding="1" width="250">
+							<tr>
+								<td valign="top">
+									<table cellspacing="0" cellpadding="0" class="posit">
+										<tr>
+											<td style="font-size: 10px">{PL2_HP_STRING}<br />{PL2_MANA_STRING}</td>
+										</tr>
+										<tr>
+											<td>
+												<table border="0" cellspacing="0" cellpadding="0">
+													<tr valign="top">
+														<td>
+															<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td>{PL2_I_HELMET}</td>
+																</tr>
+																<tr>
+																	<td>{PL2_I_WEAPON}</td>
+																</tr>
+																<tr>
+																	<td>{PL2_I_ARMOR}</td>
+																</tr>
+																<tr>
+																	<td>{PL2_I_BELT}</td>
+																</tr>
+															</table>
+														</td>
+														<td>
+															<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td align="center" valign="top"><img src="http://static.ivacuum.ru/i/chars/0/{PL2_OBRAZ}.gif" width="120" height="220" alt="{PL2_LOGIN}"></td>
+																</tr>
+																<tr>
+																	<td>
+																		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+																			<tr>
+																				<td>{PL2_I_R_KARMAN}</td>
+																				<td><img src="http://static.ivacuum.ru/i/items/w14.gif" alt="Пустой слот  левый карман" width="40" height="20" border="0"></td>
+																				<td>{PL2_I_L_KARMAN}</td>
+																			</tr>
+																		</table>
+																	</td>
+																</tr>
+															</table>
+														</td>
+														<td>
+															<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td>{PL2_I_CLIP}</td>
+																</tr>
+																<tr>
+																	<td>{PL2_I_AMULET}</td>
+																</tr>
+																<tr>
+																	<td>{PL2_I_BRASLET}</td>
+																</tr>
+																<tr>
+																	<td>{PL2_I_GLOVES}</td>
+																</tr>
+																<tr>
+																	<td>{PL2_I_RING1}{PL2_I_RING2}{PL2_I_RING3}</td>
+																</tr>
+																<tr>
+																	<td>{PL2_I_SHIELD}</td>
+																</tr>
+																<tr>
+																	<td>{PL2_I_BOOTS}</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							<tr>
+								<td align="left" valign="top">
+								Сила: {PL2_STRENGTH}<br>
+								Ловкость: {PL2_AGILITY}<br>
+								Интуиция: {PL2_PERCEPTION}<br>
+								Выносливость: {PL2_VITALITY}<br>
+								{PL2_INTELLECT}
+								{PL2_WISDOM}
+								{PL2_SPIRITUALITY}
+								{PL2_FREEDOM}
+								{PL2_FREEDOM_OF_SPIRIT}
+								{PL2_HOLINESS}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<!-- END fight -->
+			<!-- BEGIN fight_is_over -->
+			<img src="http://static.ivacuum.ru/i/battle/{END_BATTLE_IMG}" width="210" height="230" alt="Бой окончен...">
+			<!-- END figth_is_over -->
+			<!-- BEGIN fight_death -->
+			<img src="http://static.ivacuum.ru/i/battle/14.jpg" width="210" height="230" alt="">
+			<!-- END fight_death -->
+		</td>
+	</tr>
+</table>
+</form>
+
+<div id="oMenu" class="menu" onmouseout="closeMenu()"></div>
+<textarea id="holdtext" style="display: none;"></textarea>
+</body>
+</html>

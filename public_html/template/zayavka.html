@@ -1,0 +1,130 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-type">
+<style>
+.m {
+	background: #99CCCC;
+	text-align: center;
+}
+
+.s {
+	background: #BBDDDD;
+	text-align: center;
+}
+</style>
+</head>
+<body leftmargin="5" topmargin="5" marginwidth="5" marginheight="5" bgcolor="e2e0e0">
+<script src='http://static.ivacuum.ru/i/commoninf.js'></script>
+<form method="post" action="zayavka.php">
+<table width="100%" cellspacing="1" cellpadding="1">
+	<tr>
+		<!-- BEGIN level_is_null -->
+		<td colspan="8" align="right">
+		<input type="button" value="Вернуться" onclick="location.href='/main.pl';"></td>
+		<!-- END level_is_null -->
+		<!-- BEGIN level_is_not_null -->
+		<td colspan="5"><input type="hidden" name="level" value="{LEVEL}">{DRWFL} <span id="HP" style="font-size: 10px"></span>&nbsp;<img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP1" width="1" height="8" id="HP1"><img src="http://static.ivacuum.ru/i/misc/bk_life_loose.gif" alt="Уровень жизни" name="HP2" width="1" height="8" id="HP2"><span style="width: 1px; height: 10px"></span><img src="http://static.ivacuum.ru/i/herz.gif" width="10" height="9" alt="Уровень жизни"></td>
+		<td colspan="3" align="right"><script>top.setHP({CURRENT_HP},{MAX_HP},{HPSPEED});</script>
+		<input type="button" value="Вернуться" onclick="location.href='main.pl';"></td>
+		<!-- END level_is_not_null -->
+	</tr>
+	<tr>
+		<td class="m" width=40>&nbsp;<b>Бои:</b></td>
+		<td class="{CLASS_BEGIN}"><a href="/zayavka.pl?level=begin">Новичков</a></td>
+		<td class="{CLASS_FIZ}"><a href="/zayavka.pl?level=fiz">Физические</a></td>
+		<td class="{CLASS_DGV}"><a href="/zayavka.pl?level=dgv">Договорные</a></td>
+		<td class="{CLASS_GROUP}"><a href="/zayavka.pl?level=group">Групповые</a></td>
+		<td class="{CLASS_HAOS}"><a href="/zayavka.pl?level=haos">Хаотичные</a></td>
+		<td class="{CLASS_TKLOGS}"><a href="/zayavka.pl?tklogs=1">Текущие</a></td>
+		<td class="{CLASS_LOGS}"><a href="/zayavka.pl?logs=1">Завершенные</a></td>
+	</tr>
+</table>
+<!-- BEGIN level_is_null -->
+<br /><br /><center><b>{WARNING}</b></center>
+<!-- END level_is_null -->
+<!-- BEGIN fiz -->
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td valign="top">
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+					<!-- END fiz -->
+					<!-- BEGIN open_zayavka -->
+					<td><fieldset><legend><b>Подать заявку на бой</b></legend>
+					Таймаут <select name="timeout"><option value="3">3 мин.<option value="4">4 мин.<option value="5">5 мин.<option value="7">7 мин.<option value="10" selected>10 мин.</select> Тип боя <select name="k"><option value="0">с оружием<option value="1">кулачный</select>
+					<input type="submit" name="open" value="Подать заявку">&nbsp;
+					</fieldset></td>
+					<!-- END open_zayavka -->
+					<!-- BEGIN close_zayavka -->
+					<td><input type="submit" name="close" value="Отозвать свою заявку"><br /><br /></td>
+					<!-- END close_zayavka -->
+					<!-- BEGIN fiz -->
+				</tr>
+			</table>
+		</td>
+		<td align="right" valign="top"><input type="submit" name="tmp" value="Обновить">{MESSAGE}</td>
+	</tr>
+</table>
+<table cellspacing="0" cellpadding="0" align="right">
+	<tr>
+		<td><fieldset><legend>Показывать заявки</legend>
+		&nbsp;<input type="radio" id="A1" name="all" value="0" checked> <label for="A1">моего уровня</label><br>
+		&nbsp;<input type="radio" id="A2" name="all" value="1"> <label for="A2">все</label>
+		</fieldset></td>
+	</tr>
+</table>
+<input type="submit" value="Принять вызов" name="confirm2"><br>
+<!-- END fiz -->
+<!-- BEGIN list -->
+<input type="radio" name="gocombat" value="{list.ID}"> <font class="date">{list.TIME}</font> <script>drwfl("{list.USER_LOGIN}",{list.USER_ID},{list.USER_LEVEL},{list.USER_ALIGN},"{list.USER_KLAN}")</script> &nbsp; тип боя: <img src="http://static.ivacuum.ru/i/fighttype{list.KMP}.gif" width="20" height="20" alt="{list.KMP_DESC}"> (таймаут {list.TIMEOUT} мин.) <br>
+<!-- END list -->
+<!-- BEGIN fiz -->
+<input type="submit" value="Принять вызов" name="confirm2">
+<!-- END fiz -->
+<!-- BEGIN no_end_logs -->
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td valign="top" align="center"><h3>Записи текущих боев на {CURRENT_DATE} (всего {TOTAL_LOGS})</h3></td>
+		<td valign="top" align="right"><input type="submit" value="Обновить" name="tklogs"></td>
+	</tr>
+</table>
+<!-- END no_end_logs -->
+<!-- BEGIN end_logs -->
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td valign="top">&nbsp;<a href="zayavka.php?logs={PREVIOUS_DAY}&filter={FILTER_ENCODE}">« Предыдущий день</a></td>
+		<td valign="top" align="center"><h3>Записи о завершенных боях за {DATE}</h3></td>
+		<td valign="top" align="right">Следующий день »</a>&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="3" align="center">Показать только бои персонажа: <input type="text" name="filter" value="{FILTER}"> за <input type="text" name="logs" size="12" value="{DATE}"> <input type="submit" value="фильтр!"></td>
+	</tr>
+</table>
+<br />
+<!-- END end_logs -->
+<!-- BEGIN tklogs -->
+{tklogs.N}. <font class="date">{tklogs.START_TIME}</font> {tklogs.TEAM1} против {tklogs.TEAM2} <img src="http://static.ivacuum.ru/i/fighttype1{FIGHT_TYPE}.gif" width="20" height="20" alt="{tklogs.FIGHT_DESC}"> <a href="{tklogs.U_LOG}" target="_blank">»»</a><br>
+<!-- END tklogs -->
+<!-- BEGIN no_end_logs -->
+<br>
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td align="left">&nbsp;</td>
+		<td align="right"><a href="zayavka.php?tklogs=26.02.05&filter=&from=15">следующая страница »»</a>&nbsp;</td>
+	</tr>
+</table>
+<hr><br>
+<!-- END no_end_logs -->
+<!-- BEGIN end_logs -->
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td align="left">&nbsp;</td>
+		<td align="right">&nbsp;</td>
+	</tr>
+</table>
+<hr><br />
+<!-- END end_logs -->
+</form>
+</body>
+</html>

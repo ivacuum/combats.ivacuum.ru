@@ -1,0 +1,42 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/main.css">
+<link rel="stylesheet" type="text/css" href="http://static.ivacuum.ru/i/move/design3.css">
+<meta content="text/html; charset=windows-1251" http-equiv="Content-type">
+</head>
+<body leftmargin="10" topmargin="0" marginwidth="0" bgcolor="e2e0e0">
+<table width="100%" cellspacing="0" cellpadding="0">
+<form action="/main.pl" method="post">
+	<tr>
+		<td><h3>Сменить пароль/email для персонажа "{LOGIN}"</td>
+		<td align="right" valign="top"><input class="btn" type="submit" name="edit" value="Вернуться"></td>
+	</tr>
+</table>
+{MESSAGE}<br>
+Чем выше уровень вашего персонажа, тем больше к нему внимание со стороны хакеров, взломщиков и аферистов. Чтобы однажды не оказаться в ситуации, когда вы уже не сможете зайти под своим персонажем, которого развивали (которым жили!) месяцами, потому что пароль сменили, email сменили, все предметы/вещи/кредиты... все что нажито непосильным трудом... ушли в неизвестном направлении, необходимо соблюдать элементарные меры предосторожности. А именно:<br>
+1. Никогда, ни под каким предлогом, никому не говорите свой пароль. Ни паладинам, ни администрации не нужно знать ваш пароль.<br>
+2. Вводите логин и пароль только на титульной странице <a href="./../combats/index.php" target="_blank">http://vacuum/combats</a> Ни на каких других сайтах, которые будут как две капли похожие на наш, и куда вас зазывают обещая на халяву предметы и кредиты, не вводите свой пароль! Иначе вы рискуете потерять своего персонажа.<br>&nbsp;
+
+<fieldset><legend><b>Сменить пароль</b></legend>
+<table>
+	<tr>
+		<td align="right">Старый пароль:</td>
+		<td><input type="password" name="oldpsw" size="15" maxlength="31"></td>
+	</tr>
+	<tr>
+		<td align="right">Новый пароль:</td>
+		<td><input type="password" name="newpsw" size="15" maxlength="31"></td>
+	</tr>
+	<tr>
+		<td align="right">Новый пароль (еще раз):</td>
+		<td><input type="password" name="newpsw2" size="15" maxlength="31"></td>
+	</tr>
+	<tr>
+		<td align="center" colspan="2"><input class="btn" type="submit" value="Сменить пароль" name="changepsw"></td>
+	</tr>
+</table>
+</fieldset>
+</form>
+</table>
+</body>
+</html>

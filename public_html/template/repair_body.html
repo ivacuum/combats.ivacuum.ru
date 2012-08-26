@@ -1,0 +1,176 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="i/main.css">
+<link rel="stylesheet" type="text/css" href="i/move/design3.css">
+<meta content="text/html; charset=windows-1251" http-equiv="Content-type">
+<script language="JavaScript" src="i/sl2.21.js"></script>
+</head>
+<body leftmargin="5" topmargin="5" marginwidth="5" marginheight="5" bgcolor="e2e0e0">
+<div id="hint4" class="ahint"></div>
+<table width="100%" cellspacing="0" cellpadding="4">
+	<tr valign="top">
+		<td>
+			<table width="100%" cellspacing="0" cellpadding="2" bgcolor="d2d2d2">
+				<tr>
+					<td><b>&nbsp;&nbsp;Залы:&nbsp;</b></td>
+					{REPAIR}
+					{ETCHING}
+					{RECHARGE}
+					{UPGRADE}
+					{DESTINY}
+					<td width="90%">&nbsp;</td>
+				</tr>
+			</table>
+			<table width="100%" cellspacing="0" cellpadding="0" bgcolor="A5A5A5">
+				<tr>
+					<td align="center"><b>{DESC}</b></td>
+				</tr>
+				<tr>
+					<td>
+						<table width="100%" cellspacing="1" cellpadding="2" bgcolor="A5A5A5">
+							<!-- BEGIN no_items -->
+							<tr bgcolor="#c7c7c7">
+								<td align="center">{no_items.MESSAGE}</td>
+							</tr>
+							<!-- END no_items -->
+							<!-- BEGIN items -->
+							<tr bgcolor="{items.ROW_CLASS}">
+								<td align="center"><img src="i/items/{items.IMG}.gif" alt="{items.NAME}"{items.ISMAGIC}><br><small>{items.ACTION}</small></td>
+								<td valign="top"><a href="./../bk/enc.php?item={items.IMG}" target="_blank">{items.NAME}</a>
+								<img src="i/align{items.ALIGN}.gif" width="12" height="15">  (Масса: {items.WEIGHT}) {items.ARTEFACT} {items.GIFT}{items.FIT}<br>
+								<b>Цена: {items.PRICE} кр.</b><br>
+								Долговечность: {items.DURABILITY}<br>
+								{items.CHAR}
+								{items.REQUIRES}
+								{items.AFFECTS}
+								{items.PROPERTIES}
+								{items.FEATURES}
+								{items.INBUILD_MAGIC}
+								{items.COMMENT}
+								</td>
+								{ARTEFACT_PREVIEW}
+							</tr>
+							<!-- END items -->
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td valign="top" width="300" style="padding-left: 20">
+			<table width="99%" cellpadding="0" cellspacing="0">
+				<td align="right">
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tr align="right" valign="top">
+					<td>
+					</td>
+					<td>
+						<table width="80" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td width="0" valign="bottom" align="left"><a href="{U_REFRESH}"><img src="i/move/rel_1.gif" width="15" height="16" alt="Обновить" border="0"></a></td>
+								<td>
+									<table width="80" border="0" cellspacing="0" cellpadding="0">
+										<tr>
+											<td colspan="3" align="center"><img src="i/move/navigatin_462.gif" width="80" height="4"></td>
+										</tr>
+										<tr>
+											<td colspan="3" align="center">
+												<table width="80" border="0" cellspacing="0" cellpadding="0">
+													<tr>
+														<td><img src="i/move/navigatin_481.gif" width="9" height="8"></td>
+														<td width="100%" bgcolor="#000000">
+															<table border="0" cellspacing="0" cellpadding="0">
+																<tr>
+																	<td nowrap="nowrap" align="center"><div align="center" style="font-size: 4px; padding: 0px; border: solid black 0px; text-align: center" id="prcont"></div>
+																	<script language="javascript" type="text/javascript">
+																	var s="";for (i=1; i<=32; i++) {s+='<span id="progress'+i+'">&nbsp;</span>';if (i<32) {s+='&nbsp;'};}document.getElementById('prcont').innerHTML=s;
+																	</script>
+																	</td>
+																</tr>
+															</table>
+														</td>
+														<td><img src="i/move/navigatin_50.gif" width="7" height="8"></td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="3"><img src="i/move/navigatin_tt1_532.gif" width="80" height="5"></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<table border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td nowrap="nowrap" id="moveto">
+									<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#DEDEDE">
+										<!-- BEGIN links -->
+										<tr>
+											<td bgcolor="#D3D3D3"><img src="i/move/links.gif" width="9" height="7"></td>
+											<td bgcolor="#D3D3D3" nowrap><a href="{links.U_PATH}" onclick="return check_access();" class="menutop" title="{links.DESC}">{links.NAME}</a></td>
+										</tr>
+										<!-- END links -->
+									</table>
+								</td>
+							</tr>
+						</table>
+						<!-- <br /><span class="menutop"><nobr>Магазин</nobr></span>-->
+					</td>
+				</tr>
+			</table>
+			<div id="mmoves" style="background-color:#FFFFCC; visibility: hidden; overflow: visible; position: absolute; border-color: #666666; border-style: solid; border-width: 1px; padding: 2px; white-space: nowrap;"></div>
+			<script language="javascript" type="text/javascript">
+			var progressEnd = 32;		// set to number of progress <span>'s.
+			var progressColor = '#00CC00';	// set to progress bar color
+			var mtime = parseInt('{GOING_TIME}');
+			if (!mtime || mtime<=0) {mtime=0;}
+			var progressInterval = Math.round(mtime*1000/progressEnd);	// set to time between updates (milli-seconds)
+			var is_accessible = true;
+			var progressAt = progressEnd;
+			var progressTimer;
+			function progress_clear() {
+				for (var i = 1; i <= progressEnd; i++) document.getElementById('progress'+i).style.backgroundColor = 'transparent';
+				progressAt = 0;
+	
+				is_accessible = false;
+				document.getElementById('moveto').disabled = true;
+			}
+			function progress_update() {
+				progressAt++;
+				//if (progressAt > progressEnd) progress_clear();
+				if (progressAt > progressEnd) {
+		
+					is_accessible = true;
+					document.getElementById('moveto').disabled = false;
+				} else {document.getElementById('progress'+progressAt).style.backgroundColor = progressColor;
+					progressTimer = setTimeout('progress_update()',progressInterval);
+				}
+			}
+			function progress_stop() {
+				clearTimeout(progressTimer);
+				progress_clear();
+			}
+			function check(it) {
+				if (document.getElementById(it).disabled == true) {return false} else {return true;}
+			}
+			function check_access () {
+				return is_accessible;
+			}
+			if (mtime>0) {
+				progress_clear();
+				progress_update();
+			} else {
+				for (var i = 1; i <= progressEnd; i++) {
+					document.getElementById('progress'+i).style.backgroundColor = progressColor;
+				}
+			}
+			</script>
+			</table>
+		<br><b>Масса всех ваших вещей: {WEIGHT}<br>
+		В вашем кошельке: <font color="339900">{MONEY}</font> кр.</b><br>
+		{MESSAGE}
+		<br><br></td>
+	</tr>
+</table>
+</body>
+</html>
